@@ -1,0 +1,33 @@
+.Cart-itembox{
+
+}
+
+.Cart-itemdiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Cart-itemdiv> img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.Cart-itemdiv-modifynum{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+}
+
+.Cart-itemdiv-modifynum > button{
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  margin: auto;
+  width: 20px;
+}
+
+.Cart-itemdiv-modifynum > p {
+  margin: 5px;
+}

@@ -1,10 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import counterReducer from './modules/counter';
-import dataStateReducer from './modules/dataState'
+import cartReducer from './modules/cart';
+import pinkStateReducer from './modules/pinkState'
 
 export default configureStore({
   reducer:{
-    counter: counterReducer,
-    dataState: dataStateReducer,
+    cart: cartReducer,
+    pinkState: pinkStateReducer,
   }
 })

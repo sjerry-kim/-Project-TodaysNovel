@@ -1,0 +1,10 @@
+.NavbarLists-wp{
+  margin: 0;
+  padding: 0;
+}
+
+.NavbarLists-wp > a{
+  font-size: 1.1em;
+  margin: 5%;
+  padding: 0;
+}

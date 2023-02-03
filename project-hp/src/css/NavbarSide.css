@@ -1,0 +1,13 @@
+.NavbarSide-wp{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.NavbarSide-wp > a{
+  margin: 10px;
+}
+
+.NavbarSide-wp > button{
+  margin: 10px;
+}
