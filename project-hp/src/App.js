@@ -6,6 +6,7 @@ import Blue from './pages/Blue';
 import Yellow from './pages/Yellow';
 import About from './pages/About';
 import Cart from './pages/Cart';
+import PinkProducts from './pages/PinkProducts';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index path='/' element={<Pink />} />
+          <Route path='/pink' element={<Pink />}>
+            <Route path='/pink/:title'element={<PinkProducts/>}/>
+          </Route>
           <Route path='/blue' element={<Blue />} />
           <Route path='/yellow' element={<Yellow />} />
           <Route path='/about' element={<About />}/>

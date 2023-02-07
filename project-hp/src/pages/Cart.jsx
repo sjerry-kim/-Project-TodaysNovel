@@ -10,15 +10,25 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const [priceSum, setPriceSum] = useState(0);
-  let price = 0;
+  const [total, setTotal] = useState(0);
+  let totalPriceArray = [];
 
   useEffect(()=>{
-    cart.forEach((item,i)=>{
-      price = item.price*item.itemCount;
+    cart.forEach((item)=>{
+      let totalPrice = item.price*item.itemCount;
+      console.log(totalPrice)
+      totalPriceArray.push(totalPrice);
     })
-    console.log(price)
+    console.log(totalPriceArray)
+
+
+    setTotal(totalPriceArray.reduce(function add(sum, currValue) {
+      return sum + currValue;
+    }, 0))
+
   },[cart])
+
+
 
   return (  
     <div className="Cart-wp">
@@ -35,11 +45,12 @@ const Cart = () => {
               <button onClick={()=>{dispatch(decrementItem(item))}}> - </button>
             </div>
             <p>{item.price}$</p>
-            <p>{price}</p>
+            <p>{item.price * item.itemCount}</p>
             <button onClick={()=>{dispatch(deleteItem(item.itemId))}}>delete</button>
           </div>
         ))
       }
+      <p>{total}</p>
       </div>
     </div>
   );
