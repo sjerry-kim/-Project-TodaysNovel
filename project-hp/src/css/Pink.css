@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   background-color: pink;
+  /* height: calc(40vh - 100px); */
+}
+
+.Pink-wp h1{
+  margin: 0;
 }
 
 .Pink-itembox{

@@ -14,9 +14,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index path='/' element={<Pink />} />
-          <Route path='/pink' element={<Pink />}>
-            <Route path='/pink/:title'element={<PinkProducts/>}/>
-          </Route>
+          <Route path='/pink' element={<Pink />}/>
+            <Route path='/pink/:id' element={<PinkProducts/>}/>
           <Route path='/blue' element={<Blue />} />
           <Route path='/yellow' element={<Yellow />} />
           <Route path='/about' element={<About />}/>

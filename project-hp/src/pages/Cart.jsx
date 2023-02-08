@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import '../css/Cart.css';
-import { decrementItem, deleteItem, incrementItem } from "../modules/cart";
+import { checkItem, decrementItem, deleteItem, incrementItem } from "../modules/cart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,19 +16,12 @@ const Cart = () => {
   useEffect(()=>{
     cart.forEach((item)=>{
       let totalPrice = item.price*item.itemCount;
-      console.log(totalPrice)
       totalPriceArray.push(totalPrice);
     })
-    console.log(totalPriceArray)
-
-
     setTotal(totalPriceArray.reduce(function add(sum, currValue) {
       return sum + currValue;
     }, 0))
-
   },[cart])
-
-
 
   return (  
     <div className="Cart-wp">
@@ -37,6 +30,10 @@ const Cart = () => {
       {
         cart.map((item)=>(
           <div className="Cart-itemdiv">
+            <input type="checkbox" defaultChecked
+            onClick={()=>{
+              dispatch(checkItem(item))
+            }}/>
             <img src={require(`../img/${item.image}`)} alt="no image" />
             <p>{item.title}</p>
             <div className="Cart-itemdiv-modifynum">

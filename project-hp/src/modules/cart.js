@@ -16,19 +16,32 @@ export const cart = createSlice({
         item.itemId !== action.payload
       ))
     },
-    incrementItem: (state, action) => {
+    incrementItem : (state, action) => {
       let num = state.find((item)=>item.itemId === action.payload.itemId)
       num.itemCount ++;
     },
-    decrementItem: (state, action) => {
+    decrementItem : (state, action) => {
       let num = state.find((item)=>item.itemId === action.payload.itemId)
       if(num.itemCount>1){
         num.itemCount --;
+      }
+    },
+    checkItem : (state, action) => {
+      const checkedProduct = state.find((item)=>(
+      item.itemId === action.payload.itemId
+      ))
+      checkedProduct.checked = !checkedProduct.checked
+
+      console.log(checkedProduct.checked)
+      if(!checkedProduct.checked){
+        checkedProduct.itemCount = 0;
+      }else{
+        checkedProduct.itemCount = action.payload.itemCount
       }
     }
   }
 })
 
-export const {addItem, deleteItem, incrementItem, decrementItem} = cart.actions;
+export const {addItem, deleteItem, incrementItem, decrementItem, checkItem} = cart.actions;
 
 export default cart.reducer;

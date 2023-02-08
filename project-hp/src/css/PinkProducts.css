@@ -1,0 +1,32 @@
+.PinkProducts-wp{
+  margin: 100px;
+}
+
+.PinkProducts-product-div{
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  margin: auto;
+  justify-content: start;
+  
+}
+
+.PinkProducts-product-div img{
+  width: 40%;
+  min-width: 250px;
+  height: 50%;
+  min-height: 380px;
+  object-fit: cover;
+}
+
+.PinkProducts-product-detaildiv{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 5px 30px;
+  text-align: start;
+}
+
+.PinkProducts-product-detaildiv h1{
+  margin: 0;
+}

@@ -7,14 +7,16 @@ const initialState = [
     itemId:0,
     image: "pink01.jpeg",
     price: 3,
-    effect : "★★★"
+    effect : "★★★",
+    checked: true
   },
   {
     title: "Loss",
     itemId:1,
     image: "pink02.jpeg",
     price: 2,
-    effect : "★"
+    effect : "★",
+    checked: true
   }
 ];
 
