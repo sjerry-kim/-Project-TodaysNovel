@@ -19,6 +19,7 @@ const Pink = () => {
       price: item.price,
       effect: item.effect,
       itemCount: 1,
+      itemTotalCount: 1,
       checked: item.checked
     }))
   }

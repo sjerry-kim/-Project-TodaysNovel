@@ -30,13 +30,13 @@ export const cart = createSlice({
       const checkedProduct = state.find((item)=>(
       item.itemId === action.payload.itemId
       ))
-      checkedProduct.checked = !checkedProduct.checked
-
-      console.log(checkedProduct.checked)
+      checkedProduct.checked = !checkedProduct.checked;
       if(!checkedProduct.checked){
         checkedProduct.itemCount = 0;
+        console.log(checkedProduct.checked)
       }else{
-        checkedProduct.itemCount = action.payload.itemCount
+        checkedProduct.itemCount = action.payload.itemTotalCount;
+        console.log(checkedProduct.checked)
       }
     }
   }
