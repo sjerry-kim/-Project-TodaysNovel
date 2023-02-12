@@ -7,6 +7,8 @@ import Yellow from './pages/Yellow';
 import About from './pages/About';
 import Cart from './pages/Cart';
 import PinkProducts from './pages/PinkProducts';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path='/yellow' element={<Yellow />} />
           <Route path='/about' element={<About />}/>
           <Route path='/cart' element={<Cart />}/>
+          <Route path='/signin' element={<SignIn />}/>
+          <Route path='/signup' element={<SignUp />} />
         </Route>
       </Routes>
     </div>
