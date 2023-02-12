@@ -38,10 +38,19 @@ export const cart = createSlice({
         checkedProduct.itemCount = action.payload.itemTotalCount;
         console.log(checkedProduct.checked)
       }
+    },
+    checkAllItem : (state, action) => {
+      const isChecked = action.payload;
+      state.forEach(item => {
+        item.checked = isChecked
+      })
+    },
+    deleteCheckedItem(state){
+      return state.filter(item => !item.checked)
     }
   }
 })
 
-export const {addItem, deleteItem, incrementItem, decrementItem, checkItem} = cart.actions;
+export const {addItem, deleteItem, incrementItem, decrementItem, checkItem, checkAllItem, deleteCheckedItem} = cart.actions;
 
 export default cart.reducer;

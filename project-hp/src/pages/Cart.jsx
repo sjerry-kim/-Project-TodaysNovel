@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "../css/Cart.css";
 import {
+  checkAllItem,
   checkItem,
   decrementItem,
+  deleteCheckedItem,
   deleteItem,
   incrementItem,
 } from "../modules/cart";
@@ -30,6 +32,15 @@ const Cart = () => {
     );
   }, [cart]);
 
+  const handleCheckboxChange = () => {
+    const allChecked = cart.every((item) => item.ischecked);
+    dispatch(checkAllItem(!allChecked));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteCheckedItem());
+  };
+
   return (
     <div className="Cart-wp">
       <h1>
@@ -42,12 +53,17 @@ const Cart = () => {
             <tr className="Cart-table-head">
               <td>
                 {" "}
-                <input type="checkbox" />{" "}
+                <input type="checkbox"
+                defaultChecked
+                onChange={() => {
+                  console.log("정신차려")
+                  handleCheckboxChange()
+                }} />{" "}
               </td>
               <td>image</td>
               <td>title</td>
-              <td>pirce</td>
               <td>count</td>
+              <td>pirce</td>
               <td>total</td>
               <td>delete</td>
             </tr>
@@ -57,6 +73,7 @@ const Cart = () => {
                   <input
                     type="checkbox"
                     defaultChecked
+                    checked={item.checked}
                     onClick={() => {
                       dispatch(checkItem(item));
                     }}
@@ -90,10 +107,10 @@ const Cart = () => {
                   </div>
                 </td>
                 <td>
-                  <p>{item.price * item.itemTotalCount}</p>
+                  <p>{item.price}$</p>
                 </td>
                 <td>
-                  <p>{item.price}$</p>
+                  <p>{item.price * item.itemCount}$</p>
                 </td>
                 <td>
                   <button
