@@ -44,6 +44,15 @@ export const cart = createSlice({
       state.forEach(item => {
         item.checked = isChecked
       })
+      if(isChecked === false){
+        state.forEach(item=>{
+          item.itemCount = 0;
+        })
+      }else{
+        state.forEach(item=>{
+          item.itemCount = 1;
+        })
+      }
     },
     deleteCheckedItem(state){
       return state.filter(item => !item.checked)

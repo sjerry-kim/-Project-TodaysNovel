@@ -19,6 +19,7 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [total, setTotal] = useState(0);
   let totalPriceArray = [];
+  const allChecked = cart.every((item) => item.checked);
 
   useEffect(() => {
     cart.forEach((item) => {
@@ -33,7 +34,7 @@ const Cart = () => {
   }, [cart]);
 
   const handleCheckboxChange = () => {
-    const allChecked = cart.every((item) => item.ischecked);
+    console.log(allChecked);
     dispatch(checkAllItem(!allChecked));
   };
 
@@ -55,15 +56,15 @@ const Cart = () => {
                 {" "}
                 <input type="checkbox"
                 defaultChecked
+                checked={allChecked}
                 onChange={() => {
-                  console.log("정신차려")
                   handleCheckboxChange()
                 }} />{" "}
               </td>
               <td>image</td>
               <td>title</td>
-              <td>count</td>
               <td>pirce</td>
+              <td>count</td>
               <td>total</td>
               <td>delete</td>
             </tr>
@@ -72,7 +73,6 @@ const Cart = () => {
                 <td>
                   <input
                     type="checkbox"
-                    defaultChecked
                     checked={item.checked}
                     onClick={() => {
                       dispatch(checkItem(item));
@@ -84,6 +84,9 @@ const Cart = () => {
                 </td>
                 <td>
                   <p>{item.title}</p>
+                </td>
+                <td>
+                  <p>{item.price}$</p>
                 </td>
                 <td>
                   <div className="Cart-itemdiv-modifynum">
@@ -107,9 +110,6 @@ const Cart = () => {
                   </div>
                 </td>
                 <td>
-                  <p>{item.price}$</p>
-                </td>
-                <td>
                   <p>{item.price * item.itemCount}$</p>
                 </td>
                 <td>
@@ -125,9 +125,14 @@ const Cart = () => {
             ))}
           </table>
         ) : (
-          "Your Cart Is Empty."
+          "Your Cart is Empty."
         )}
-        {cart.length !== 0 ? <p>{total}</p> : " "}
+        {cart.length !== 0 ? (
+        <div>
+          <button onClick={()=>{handleDelete()}}>Delete Selection</button>
+          <p>{total}</p>
+        </div>)
+          : " "}
       </div>
     </div>
   );
