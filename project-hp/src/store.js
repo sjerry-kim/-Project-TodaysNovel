@@ -1,12 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit';
 import cartReducer from './modules/cart';
-import pinkComment from './modules/pinkComment';
+import pinkCommentReducer from './modules/pinkComment';
 import pinkStateReducer from './modules/pinkState'
+import userReducer from './modules/user';
 
 export default configureStore({
   reducer:{
     cart: cartReducer,
     pinkState: pinkStateReducer,
-    pinkComment: pinkComment
+    pinkComment: pinkCommentReducer,
+    user: userReducer,
   }
 })

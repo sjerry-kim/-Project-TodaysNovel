@@ -4,10 +4,11 @@ import NavbarSide from "./NavbarSide";
 
 import "../css/Navbar.css";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const {load, setLoad} = props;
   return (
     <div className="Navbar-wp">
-      <NavbarSide />
+      <NavbarSide load={load} setLoad={setLoad} />
       <NavbarLogo />
       <NavbarLists />
     </div>
