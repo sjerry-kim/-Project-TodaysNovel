@@ -1,29 +1,36 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import '../css/SignIn.css';
+import { signIn } from '../modules/user';
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
-
+  const [test, setTest] = useState(true);
+  const sameAccount = user.userList.find((user)=>(user.id == id && user.pw == pw))
+  const sameId = user.userList.find((user)=>(user.id == id));
+  const samePw = user.userList.find((user)=>(user.pw == pw));
+  // const sessionId = sessionStorage.getItem("id");
+  // const currentUser = user.userList.find((user)=>(user.id == sessionId));
+  // const sessionCart = sessionStorage.getItem("cart");
+  
   const Login = () => {
-    const sameAccount = user.userList.find((user)=>(user.id == id && user.pw == pw))
-    const sameId = user.userList.find((user)=>(user.id == id));
-    const samePw = user.userList.find((user)=>(user.pw == pw));
     if(sameAccount){
       navigate('/')
       sessionStorage.setItem("Login", true);
       sessionStorage.setItem("id", id);
       sessionStorage.setItem("name", sameAccount.name);
-      sessionStorage.setItem("cart", cart);
-      const sessionId = sessionStorage.getItem("id");
-      const currentUser = user.userList.find((user)=>(user.id == sessionId));
-      const sessionCart = sessionStorage.getItem("cart");
-      currentUser.cart = JSON.stringify(sessionCart);
+      dispatch(signIn(sameAccount));
+      if(cart){
+        const stringfyCart = JSON.stringify(cart);
+        sessionStorage.setItem("cart", stringfyCart)
+      }
+
     }else if(sameId){
       alert("비밀번호가 올바르지 않습니다")
     }else if(samePw){
@@ -47,7 +54,6 @@ const SignIn = () => {
       </form>
       <button onClick={()=>{
         navigate('/signup');
-        // window.location.reload();
       }}
       >Sign up</button>
     </div>

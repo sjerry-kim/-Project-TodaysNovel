@@ -30,6 +30,7 @@ const SignUp = () => {
         onSubmit={(e) => {
           e.preventDefault();
           const newUser = {
+            login: false,
             id: id,
             pw: pw,
             name: name,

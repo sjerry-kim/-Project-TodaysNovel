@@ -11,15 +11,21 @@ import {
   deleteItem,
   incrementItem,
 } from "../modules/cart";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
   const [total, setTotal] = useState(0);
   let totalPriceArray = [];
   const allChecked = cart.every((item) => item.checked);
+  const sessionId = sessionStorage.getItem("id");
+  const currentUser = user.userList.find((user)=>(user.id == sessionId));
+  const sessionCart = sessionStorage.getItem("cart");
+  // const [changeCart, setChangeCart] = useState(currentUser.cart);
+  // const [remainCart, setRemainCart] = useState(cart);
 
   useEffect(() => {
     cart.forEach((item) => {
@@ -32,6 +38,20 @@ const Cart = () => {
       }, 0)
     );
   }, [cart]);
+
+  useEffect(()=>{
+    console.log(cart);
+    const stringfyCart = JSON.stringify(cart);
+    sessionStorage.setItem("cart", stringfyCart)
+    // const parseCart = JSON.parse(sessionCart);
+    // console.log(parseCart)
+    // console.log(currentUser.cart)
+    // setChangeCart(parseCart);
+    
+    // if(changeCart != null){
+    //   setRemainCart(changeCart)
+    // }
+  },[cart])
 
   const handleCheckboxChange = () => {
     console.log(allChecked);

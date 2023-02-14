@@ -8,8 +8,18 @@ import { addItem } from "../modules/cart";
 const Pink = () => {
   const pinkItems = useSelector((state) => state.pinkState);
   const cart = useSelector((state)=>state.cart);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const sessionId = sessionStorage.getItem("id");
+  // const currentUser = user.userList.find((user)=>(user.id == sessionId));
+  // const sessionCart = sessionStorage.getItem("cart");
+
+  useEffect(()=>{
+    console.log(cart);
+    const stringfyCart = JSON.stringify(cart);
+    sessionStorage.setItem("cart", stringfyCart)
+  },[cart])
 
   const insertItem = (item) => {
     dispatch(addItem({
