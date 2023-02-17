@@ -1,11 +1,13 @@
-import { useCallback } from "react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../css/NavbarSide.css";
+import { EmptyCart } from "../modules/cart";
 
 const NavbarSide = () => {
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
   const [load, setLoad] = useState(true);
@@ -15,11 +17,10 @@ const NavbarSide = () => {
     setLoad(true);
   }, [test, load]);
 
-  useEffect(()=>{
-    if(currentUser){
-
-    }
-  }, [])
+  // useEffect(()=>{
+  //   if(currentUser){
+  //   }
+  // }, [])
 
   return (
     <div className="NavbarSide-wp">
@@ -33,8 +34,8 @@ const NavbarSide = () => {
               sessionStorage.setItem("name", null);
               sessionStorage.setItem("Login", false);
               sessionStorage.setItem("cart", []);
+              dispatch(EmptyCart(test));
               setTest(!test);
-              window.location.reload();
             }}
           >
             Sign out

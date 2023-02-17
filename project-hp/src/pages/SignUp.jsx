@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "../css/SignUp.css";
 import useInput from "../hooks/useInput";
 import { signUp } from "../modules/user";
@@ -13,6 +14,7 @@ const SignUp = () => {
   const [adress, setAdress] = useInput("");
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const findUser = (newUser) => {
     const sameAccount = user.userList.find((user)=>(user.id == id && user.pw == pw))
@@ -20,6 +22,7 @@ const SignUp = () => {
       alert("이미 가입한 아이디입니다")
     }else{
       dispatch(signUp(newUser))
+      navigate('/signin');
     }
   }
 
