@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import '../css/Pink.css';
 import { addItem } from "../modules/cart";
+import { changeCart } from "../modules/user";
 
 const Pink = () => {
   const pinkItems = useSelector((state) => state.pinkState);
@@ -11,18 +12,27 @@ const Pink = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const sessionId = sessionStorage.getItem("id");
-  // const currentUser = user.userList.find((user)=>(user.id == sessionId));
-  // const sessionCart = sessionStorage.getItem("cart");
+  const sessionId = sessionStorage.getItem("id");
+  const currentUser = user.userList.find((user)=>(user.id == sessionId));
+  const sessionCart = sessionStorage.getItem("cart");
 
   useEffect(()=>{
     console.log(cart);
     const stringfyCart = JSON.stringify(cart);
     sessionStorage.setItem("cart", stringfyCart)
+
+    if(!cart){
+      const parseCart = JSON.parse(sessionCart);
+      console.log(parseCart);
+      dispatch(changeCart(parseCart));
+      console.log(currentUser.cart);
+    }
+
   },[cart])
 
   const insertItem = (item) => {
     dispatch(addItem({
+      id: sessionStorage.getItem("id"),
       title: item.title,
       itemId: item.itemId,
       image: item.image,

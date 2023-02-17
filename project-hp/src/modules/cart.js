@@ -54,9 +54,9 @@ export const cart = createSlice({
         })
       }
     },
-    deleteCheckedItem(state){
+    deleteCheckedItem : (state) =>{
       return state.filter(item => !item.checked)
-    }
+    },
   }
 })
 

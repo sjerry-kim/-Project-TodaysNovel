@@ -30,15 +30,18 @@ export const user = createSlice({
     },
     signIn : (state, action)=>{
       const currentUser = action.payload;
-      // console.log(currentUser);
       const stateCurrentUser= state.userList.find((user)=>(user.id==currentUser.id && user.pw==currentUser.pw));
       stateCurrentUser.login = true;
-      // console.log(stateCurrentUser);
-      // console.log(stateCurrentUser.login);
+    },
+    changeCart : (state, action) => {
+      const parseCartState = action.payload;
+      const sameUser = state.userList.find((user)=>(user.id == parseCartState[0].id))
+      console.log(sameUser.cart); 
+      sameUser.cart = parseCartState;
     }
   }
 })
 
-export const {signUp, signIn} = user.actions;
+export const {signUp, signIn, changeCart} = user.actions;
 
 export default user.reducer;
