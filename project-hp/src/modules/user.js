@@ -35,12 +35,15 @@ export const user = createSlice({
     },
     changeCart : (state, action) => {
       const parseCartState = action.payload;
-      if(parseCartState){
-        const sameUser = state.userList.find((user)=>(user.id == parseCartState.id));
+      if(parseCartState[0].id != "null"){
+        const sameUser = state.userList.find((user)=>(user.id == parseCartState[0].id));
         console.log(sameUser);
-        console.log(parseCartState);
-        // sameUser.cart = parseCartState;
+        console.log(parseCartState[0].id);
+        sameUser.cart = parseCartState ;
       }
+      // else{
+      //   parseCartState[0].id = sessionStorage.getItem("id")
+      // }
     }
   }
 })

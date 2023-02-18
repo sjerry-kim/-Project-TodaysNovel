@@ -45,8 +45,8 @@ const Cart = () => {
     console.log(cart);
     const stringfyCart = JSON.stringify(cart);
     sessionStorage.setItem("cart", stringfyCart)
-    if(!cart){
-      const parseCart = JSON.parse(sessionCart);
+    const parseCart = JSON.parse(sessionCart);
+    if(currentUser && parseCart[0] != "null"){
       console.log(parseCart);
       dispatch(changeCart(parseCart));
       console.log(currentUser.cart);
