@@ -20,14 +20,12 @@ const Pink = () => {
     console.log(cart);
     const stringfyCart = JSON.stringify(cart);
     sessionStorage.setItem("cart", stringfyCart)
-
-    if(!cart){
+    if(currentUser){
       const parseCart = JSON.parse(sessionCart);
       console.log(parseCart);
       dispatch(changeCart(parseCart));
       console.log(currentUser.cart);
     }
-
   },[cart])
 
   const insertItem = (item) => {

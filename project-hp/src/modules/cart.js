@@ -57,10 +57,8 @@ export const cart = createSlice({
     deleteCheckedItem : (state) =>{
       return state.filter(item => !item.checked)
     },
-    EmptyCart : (state, action) => {
+    EmptyCart : (state) => {
       state = initialState;
-      test = action.payload;
-      test = !test;
     }
   }
 })

@@ -30,7 +30,6 @@ const SignIn = () => {
         const stringfyCart = JSON.stringify(cart);
         sessionStorage.setItem("cart", stringfyCart)
       }
-
     }else if(sameId){
       alert("비밀번호가 올바르지 않습니다")
     }else if(samePw){

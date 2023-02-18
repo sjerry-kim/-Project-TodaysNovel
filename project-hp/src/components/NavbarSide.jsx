@@ -17,15 +17,18 @@ const NavbarSide = () => {
     setLoad(true);
   }, [test, load]);
 
-  // useEffect(()=>{
-  //   if(currentUser){
-  //   }
-  // }, [])
-
   return (
     <div className="NavbarSide-wp">
-      {sessionStorage.getItem("Login") == "true" ? (
-        // currentUser == null ?
+      {
+      // sessionStorage.getItem("Login") == "true" ? (
+        currentUser == null ? 
+        
+        (
+          <Link to="/signin">Sign in</Link>
+        )
+
+:
+        (
         <div>
           <p>Welcome,{sessionStorage.getItem("name")}</p>
           <button
@@ -34,16 +37,15 @@ const NavbarSide = () => {
               sessionStorage.setItem("name", null);
               sessionStorage.setItem("Login", false);
               sessionStorage.setItem("cart", []);
-              dispatch(EmptyCart(test));
               setTest(!test);
+              dispatch(EmptyCart());
             }}
           >
             Sign out
           </button>
         </div>
-      ) : (
-        <Link to="/signin">Sign in</Link>
-      )}
+      )
+          }
       <Link to="/cart">Cart</Link>
     </div>
   );

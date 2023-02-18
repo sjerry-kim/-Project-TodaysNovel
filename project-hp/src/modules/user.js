@@ -35,9 +35,12 @@ export const user = createSlice({
     },
     changeCart : (state, action) => {
       const parseCartState = action.payload;
-      const sameUser = state.userList.find((user)=>(user.id == parseCartState[0].id))
-      console.log(sameUser.cart); 
-      sameUser.cart = parseCartState;
+      if(parseCartState){
+        const sameUser = state.userList.find((user)=>(user.id == parseCartState.id));
+        console.log(sameUser);
+        console.log(parseCartState);
+        // sameUser.cart = parseCartState;
+      }
     }
   }
 })
