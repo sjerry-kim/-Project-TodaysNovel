@@ -17,16 +17,30 @@ const Pink = () => {
   const sessionCart = sessionStorage.getItem("cart");
 
   useEffect(()=>{
+    // console.log(cart);
+    // const stringfyCart = JSON.stringify(cart);
+    // sessionStorage.setItem("cart", stringfyCart)
+    // const parseCart = JSON.parse(sessionCart);
+    // if(currentUser && parseCart[0] != "null"){
+    //   console.log(parseCart);
+    //   dispatch(changeCart(parseCart));
+    //   console.log(currentUser.cart);
+    // }
+
     console.log(cart);
     const stringfyCart = JSON.stringify(cart);
-    sessionStorage.setItem("cart", stringfyCart)
-    const parseCart = JSON.parse(sessionCart);
-    if(currentUser && parseCart[0] != "null"){
-      console.log(parseCart);
+    sessionStorage.setItem("cart", stringfyCart);
+    let parseCart = JSON.parse(sessionCart);
+    if(parseCart[0] == undefined){
+      console.log("장바구니 추가 상품 없음")
+    }else if(currentUser && parseCart[0].id != "null"){
+      console.log(parseCart[0]);
       dispatch(changeCart(parseCart));
       console.log(currentUser.cart);
+    }else if(parseCart[0].id == "null"){
+      console.log("로그인 하기 전 장바구니 있음")
     }
-  },[cart])
+  },[cart, sessionCart])
 
   const insertItem = (item) => {
     dispatch(addItem({

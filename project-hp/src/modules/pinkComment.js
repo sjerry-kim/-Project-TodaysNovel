@@ -1,7 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const name = "pinkComment";
-const initialState = [];
+const initialState = [
+];
 
 export const pinkComment = createSlice({
   name,

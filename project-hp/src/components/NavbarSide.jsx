@@ -36,9 +36,11 @@ const NavbarSide = () => {
               sessionStorage.setItem("id", null);
               sessionStorage.setItem("name", null);
               sessionStorage.setItem("Login", false);
-              sessionStorage.setItem("cart", []);
+              // ⬇️ 얘 때문에 빈 페이지 에러 생김 🔥
+              // sessionStorage.setItem("cart", []);
               setTest(!test);
               dispatch(EmptyCart());
+              // window.location.reload();
             }}
           >
             Sign out
