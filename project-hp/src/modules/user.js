@@ -8,11 +8,12 @@ const initialState = {
       id: "jinhye01",
       pw: "a1!0000",
       name : "김진혜",
-      tel : "01000000000",
+      tel : "010-0000-0000",
       email: "vipisu_976@naver.com",
       adress : "부산광역시 동구",
       cart: [],
-      comment: [],
+      qnaComment: [],
+      orderedProducts : [],
     },
   ]
 }
@@ -41,10 +42,20 @@ export const user = createSlice({
         console.log(parseCartState[0].id);
         sameUser.cart = parseCartState;
       }
+    },
+    changeUserInfo : (state, action) => {
+      const currentUser = action.payload;
+      const stateCurrentUser= state.userList.find((user)=>(user.id==currentUser.id && user.pw==currentUser.pw));
+      stateCurrentUser.name = currentUser.name;
+      stateCurrentUser.id = currentUser.id;
+      stateCurrentUser.pw = currentUser.pw;
+      stateCurrentUser.tel = currentUser.tel;
+      stateCurrentUser.email = currentUser.email;
+      stateCurrentUser.adress = currentUser.adress;
     }
   }
 })
 
-export const {signUp, signIn, changeCart} = user.actions;
+export const {signUp, signIn, changeCart, changeUserInfo} = user.actions;
 
 export default user.reducer;

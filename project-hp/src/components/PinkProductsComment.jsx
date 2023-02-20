@@ -13,7 +13,7 @@ const PinkProductsComment = (props) => {
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
   // const findUser = user.userList.find((a)=>a.id == );
-  const pinkComment = useSelector((state)=>state.pinkComment)
+  const pinkComment = useSelector((state)=>state.pinkComment);
   const pinkCommentId = pinkComment.filter((c)=>(
     c.productId == id
   ))

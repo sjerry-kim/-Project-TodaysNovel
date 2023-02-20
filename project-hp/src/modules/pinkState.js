@@ -25,7 +25,6 @@ const initialState = [
     price: 1,
     effect : "★",
     checked: true
-    
   },
   {
     title: "Like",

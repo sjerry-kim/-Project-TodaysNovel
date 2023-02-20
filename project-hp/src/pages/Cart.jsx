@@ -156,6 +156,7 @@ const Cart = () => {
         <div>
           <button onClick={()=>{handleDelete()}}>Delete Selection</button>
           <p>{total}</p>
+          <button> Buy </button>
         </div>)
           : " "}
       </div>

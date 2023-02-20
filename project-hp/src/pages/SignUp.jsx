@@ -39,7 +39,10 @@ const SignUp = () => {
             name: name,
             tel: tel,
             email: email,
-            adress: adress
+            adress: adress,
+            cart:[],
+            qnaComment:[],
+            orderedProducts:[]
           }
           findUser(newUser);
         }}
