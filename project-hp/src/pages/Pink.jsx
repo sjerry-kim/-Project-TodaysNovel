@@ -43,8 +43,9 @@ const Pink = () => {
       effect: item.effect,
       itemCount: 1,
       itemTotalCount: 1,
-      checked: item.checked
+      isChecked: item.isChecked
     }))
+    console.log(cart);
   }
 
   return (

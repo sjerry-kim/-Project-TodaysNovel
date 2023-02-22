@@ -30,19 +30,19 @@ export const cart = createSlice({
       const checkedProduct = state.find((item)=>(
       item.itemId === action.payload.itemId
       ))
-      checkedProduct.checked = !checkedProduct.checked;
-      if(!checkedProduct.checked){
+      checkedProduct.isChecked = !checkedProduct.isChecked;
+      if(!checkedProduct.isChecked){
         checkedProduct.itemCount = 0;
-        console.log(checkedProduct.checked)
+        console.log(checkedProduct.isChecked)
       }else{
         checkedProduct.itemCount = action.payload.itemTotalCount;
-        console.log(checkedProduct.checked)
+        console.log(checkedProduct.isChecked)
       }
     },
     checkAllItem : (state, action) => {
       const isChecked = action.payload;
       state.forEach(item => {
-        item.checked = isChecked
+        item.isChecked = isChecked;
       })
       if(isChecked === false){
         state.forEach(item=>{
@@ -55,7 +55,7 @@ export const cart = createSlice({
       }
     },
     deleteCheckedItem : (state) =>{
-      return state.filter(item => !item.checked)
+      return state.filter(item => !item.isChecked)
     },
     EmptyCart : (state) => {
       return state = initialState;

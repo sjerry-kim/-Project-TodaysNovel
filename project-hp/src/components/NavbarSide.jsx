@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../css/NavbarSide.css";
 import { EmptyCart } from "../modules/cart";
+import { signOut } from "../modules/user";
 
 const NavbarSide = () => {
   const user = useSelector((state) => state.user);
@@ -10,18 +11,17 @@ const NavbarSide = () => {
   const dispatch = useDispatch();
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
-  const [load, setLoad] = useState(true);
-  const [test, setTest] = useState(true);
+  // const [load, setLoad] = useState(true);
+  // const [test, setTest] = useState(true);
 
-  useEffect(() => {
-    setLoad(true);
-  }, [test, load]);
+  // useEffect(() => {
+  //   setLoad(true);
+  // }, [test, load]);
 
   return (
     <div className="NavbarSide-wp">
       {
-        // sessionStorage.getItem("Login") == "true" ? (
-        currentUser == null ? (
+        sessionStorage.getItem("Login") !== "true" ? (
           <Link to="/signin">Sign in</Link>
         ) : (
           <div>
@@ -33,8 +33,12 @@ const NavbarSide = () => {
                 sessionStorage.setItem("Login", false);
                 // ⬇️ 얘 때문에 빈 페이지 에러 생김 🔥
                 // sessionStorage.setItem("cart", []);
-                setTest(!test);
+                // setTest(!test);
                 dispatch(EmptyCart());
+                // dispatch(signOut(currentUser));
+                // console.log(currentUser.login);
+                // console.log(currentUser.login);
+                // console.log(test);
               }}
             >
               Sign out

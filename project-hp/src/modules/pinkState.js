@@ -8,7 +8,7 @@ const initialState = [
     image: "pink01.jpeg",
     price: 3,
     effect : "★★★",
-    checked: true
+    isChecked: true
   },
   {
     title: "Loss",
@@ -16,7 +16,7 @@ const initialState = [
     image: "pink02.jpeg",
     price: 2,
     effect : "★",
-    checked: true
+    isChecked: true
   },
   {
     title: "Crush",
@@ -24,7 +24,7 @@ const initialState = [
     image: "pink03.jpeg",
     price: 1,
     effect : "★",
-    checked: true
+    isChecked: true
   },
   {
     title: "Like",
@@ -32,7 +32,7 @@ const initialState = [
     image: "pink04.jpeg",
     price: 10,
     effect : "★",
-    checked: true
+    isChecked: true
     
   },
   {
@@ -41,7 +41,7 @@ const initialState = [
     image: "pink05.jpeg",
     price: 20,
     effect : "★",
-    checked: true
+    isChecked: true
     
   },
   {
@@ -50,7 +50,7 @@ const initialState = [
     image: "pink06.jpeg",
     price: 5,
     effect : "★",
-    checked: true
+    isChecked: true
     
   }
 ];

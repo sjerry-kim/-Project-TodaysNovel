@@ -34,6 +34,11 @@ export const user = createSlice({
       const stateCurrentUser= state.userList.find((user)=>(user.id==currentUser.id && user.pw==currentUser.pw));
       stateCurrentUser.login = true;
     },
+    signOut : (state, action)=>{
+      const currentUser = action.payload;
+      const stateCurrentUser= state.userList.find((user)=>(user.id==currentUser.id && user.pw==currentUser.pw));
+      stateCurrentUser.login = false;
+    },
     changeCart : (state, action) => {
       const parseCartState = action.payload;
       if(parseCartState[0]){
@@ -52,10 +57,17 @@ export const user = createSlice({
       stateCurrentUser.tel = currentUser.tel;
       stateCurrentUser.email = currentUser.email;
       stateCurrentUser.adress = currentUser.adress;
+    },
+    buyCheckedProduct : (state, action) => {
+      const purchaseArray = action.payload;
+      console.log(purchaseArray);
+      const sameUser = state.userList.find((user)=>(user.id == purchaseArray[0].id));
+      console.log(sameUser);
+      sameUser.orderedProducts = purchaseArray;
     }
   }
 })
 
-export const {signUp, signIn, changeCart, changeUserInfo} = user.actions;
+export const {signUp, signIn, signOut, changeCart, changeUserInfo, buyCheckedProduct} = user.actions;
 
 export default user.reducer;

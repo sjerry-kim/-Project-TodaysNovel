@@ -18,7 +18,8 @@ const SignIn = () => {
   // const sessionId = sessionStorage.getItem("id");
   // const currentUser = user.userList.find((user)=>(user.id == sessionId));
   // const sessionCart = sessionStorage.getItem("cart");
-  
+
+
   const Login = () => {
     if(sameAccount){
       navigate('/')
@@ -42,8 +43,9 @@ const SignIn = () => {
   return (  
     <div className='SignIn-wp'>
       <form action="" onSubmit={(e)=>{
-        e.preventDefault()
+        e.preventDefault();
         Login();
+        window.location.reload();
         }}>
         <label htmlFor="">Id</label>
         <input type="text" onChange={(e)=>{setId(e.target.value)}}/>

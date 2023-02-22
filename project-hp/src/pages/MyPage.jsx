@@ -77,6 +77,15 @@ const MyPage = () => {
           )
         }
       </div>
+      <div>
+        {currentUser.orderedProducts.map((p)=>(
+          <div>
+            <p>{p.title}</p>
+            <img src={require(`../img/${p.image}`)} alt="no image" />
+            <button>review</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
