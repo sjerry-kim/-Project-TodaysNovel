@@ -15,6 +15,7 @@ import {
 import { buyCheckedProduct, changeCart } from "../modules/user";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+let purchaseArray = [];
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Cart = () => {
   const [total, setTotal] = useState(0);
   let totalPriceArray = [];
   const allChecked = cart.every((item) => item.isChecked);
+  const checkedList = cart.filter((item)=> item.isChecked);
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
   const sessionCart = sessionStorage.getItem("cart");
@@ -31,7 +33,6 @@ const Cart = () => {
   // const [changeCart, setChangeCart] = useState(currentUser.cart);
   // const [remainCart, setRemainCart] = useState(cart);
   // const [parseCartState, setParseCartState] = useState();
-  let purchaseArray = [];
 
   useEffect(() => {
     cart.forEach((item) => {
@@ -64,6 +65,14 @@ const Cart = () => {
     }
   }, [cart, sessionCart]);
 
+  // useEffect(()=>{
+  //   cart.forEach((p)=>{
+  //     if(p.isChecked){
+  //       buyList.push(p);
+  //     }
+  //   })
+  // },[allChecked])
+
   const handleCheckboxChange = () => {
     console.log(allChecked);
     dispatch(checkAllItem(!allChecked));
@@ -76,17 +85,19 @@ const Cart = () => {
   const buyCheckedProducts = () => {
     cart.forEach((p) => {
       if (p.isChecked) {
-        // ... 이거 사용해보기! 🔥
         let newPurchaseArray = purchaseArray.concat(p);
         purchaseArray = newPurchaseArray;
+        console.log(newPurchaseArray);
+        console.log(purchaseArray);
       }
     });
-    console.log(purchaseArray);
     dispatch(buyCheckedProduct(purchaseArray));
-    dispatch(deleteCheckedItem());
-    console.log(currentUser.orderedProducts);
-    alert("상품 주문하였습니다")
-    navigate('/mypage');
+      dispatch(deleteCheckedItem());
+      console.log(currentUser.orderedProducts);
+
+        alert("주문완료!")
+
+      navigate('/mypage');
   };
 
   return (
@@ -192,7 +203,16 @@ const Cart = () => {
                   cart.forEach((p) => (p.id = sessionId));
                   console.log(cart);
                 }
-                buyCheckedProducts();
+                console.log()
+                if(checkedList.length == 0){
+                  alert("주문할 상품을 선택하세요")
+                }else{
+                  if(window.confirm("주문하시겠습니까?")){
+                    buyCheckedProducts();
+                  }else{
+                    alert("주문이 취소되었습니다")
+                  }
+                }
               }}
             >
               {" "}

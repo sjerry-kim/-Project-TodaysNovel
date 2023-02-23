@@ -46,7 +46,7 @@ const initialState = [
   },
   {
     title: "break",
-    itemId: 25,
+    itemId: 5,
     image: "pink06.jpeg",
     price: 5,
     effect : "★",

@@ -1,0 +1,13 @@
+.MyPage-purchasedProducts-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: 50%;
+}
+
+.MyPage-purchasedProducts-div img{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}

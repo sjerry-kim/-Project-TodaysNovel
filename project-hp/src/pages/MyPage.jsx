@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeUserInfo } from "../modules/user";
+
+import '../css/MyPage.css';
 
 const MyPage = () => {
   const dispatch = useDispatch();
@@ -14,6 +17,12 @@ const MyPage = () => {
   const [tel, setTel] = useState(currentUser.tel);
   const [email, setEmail] = useState(currentUser.email);
   const [adress, setAdress] = useState(currentUser.adress);
+
+
+  useEffect(()=>{
+    sessionStorage.setItem("name","진혜");
+    console.log(sessionStorage.getItem("name"));
+  },[])
 
   const checkUserInfo = () => {
     // 모달 추가해서 수정하기!
@@ -77,14 +86,22 @@ const MyPage = () => {
           )
         }
       </div>
-      <div>
-        {currentUser.orderedProducts.map((p)=>(
-          <div>
+      <div className="MyPage-purchasedProducts">
+        { currentUser.orderedProducts[0]?
+        
+        
+        currentUser.orderedProducts.map((p)=>(
+          <div className="MyPage-purchasedProducts-div">
             <p>{p.title}</p>
             <img src={require(`../img/${p.image}`)} alt="no image" />
             <button>review</button>
           </div>
-        ))}
+        ))
+        :
+        <p>
+          주문한 상품 없음
+        </p>
+      }
       </div>
     </div>
   );

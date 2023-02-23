@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/NavbarSide.css";
 import { EmptyCart } from "../modules/cart";
 import { signOut } from "../modules/user";
@@ -9,6 +9,7 @@ const NavbarSide = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
   // const [load, setLoad] = useState(true);
@@ -39,6 +40,7 @@ const NavbarSide = () => {
                 // console.log(currentUser.login);
                 // console.log(currentUser.login);
                 // console.log(test);
+                navigate('/');
               }}
             >
               Sign out
