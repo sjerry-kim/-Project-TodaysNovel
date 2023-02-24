@@ -10,6 +10,8 @@ import PinkProducts from './pages/PinkProducts';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import MyPage from './pages/MyPage';
+import ReviewModal from './components/ReviewModal';
+import Search from './pages/Search';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route index path='/' element={<Pink />} />
           <Route path='/pink' element={<Pink />}/>
             <Route path='/pink/:id' element={<PinkProducts/>}/>
+            {/* <Route path='/pink/:search' element={<Search />}/> */}
           <Route path='/blue' element={<Blue />} />
           <Route path='/yellow' element={<Yellow />} />
           <Route path='/about' element={<About />}/>
@@ -26,6 +29,7 @@ function App() {
           <Route path='/signin' element={<SignIn />}/>
           <Route path='/signup' element={<SignUp />} />
           <Route path='/mypage' element={<MyPage />}/>
+          <Route path='/mypage/:id' element={<ReviewModal />}/>
         </Route>
       </Routes>
     </div>

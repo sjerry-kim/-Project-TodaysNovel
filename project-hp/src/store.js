@@ -10,6 +10,7 @@ import storageSession from 'redux-persist/lib/storage/session'
 import {combineReducers} from 'redux';
 import {persistReducer} from 'redux-persist'
 import myPage from './modules/myPage';
+import pinkReview from './modules/pinkReview';
 
 const reducers = combineReducers({
     cart: cart,
@@ -17,12 +18,13 @@ const reducers = combineReducers({
     pinkComment: pinkComment,
     user: user,
     myPage: myPage,
+    pinkReview: pinkReview
 })
 
 const persistConfig = {
   key : "root",
   storage : storageSession,
-  list : ["cart", "pinkState", "pinkComment", "user", "myPage"], 
+  list : ["cart", "pinkState", "pinkComment", "user", "myPage", "pinkReview"], 
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)

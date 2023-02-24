@@ -13,8 +13,7 @@ import {
   incrementItem,
 } from "../modules/cart";
 import { buyCheckedProduct, changeCart } from "../modules/user";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
 let purchaseArray = [];
 
 const Cart = () => {
@@ -94,7 +93,8 @@ const Cart = () => {
     dispatch(buyCheckedProduct(purchaseArray));
       dispatch(deleteCheckedItem());
       console.log(currentUser.orderedProducts);
-
+      let sPurchaseArray = JSON.stringify(purchaseArray);
+      sessionStorage.setItem("reviewAble",sPurchaseArray);
         alert("주문완료!")
 
       navigate('/mypage');
