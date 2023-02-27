@@ -9,7 +9,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 let reviewId = 0;
 
 const ReviewModal = (props) => {
-  const { reviewModal, setReviewModal, modalArray } = props;
+  const { reviewModal, setReviewModal} = props;
   const {id} = useParams();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const ReviewModal = (props) => {
   const sameProduct = currentUser.orderProducts;
   // Modal 창을 useRef로 취득
   const modalRef = useRef(null);
+  // Modal 내부 내용
   const [userId, setUserId] = useState(currentUser.id);
   const [userRate, setUserRate] = useState("");
   const [userText, setUserText] = useState("");
@@ -74,7 +75,6 @@ const ReviewModal = (props) => {
             text: userText,
             date: userDate,
           }))
-          console.log(modalArray);
         }}
         >save</button>
       </div>

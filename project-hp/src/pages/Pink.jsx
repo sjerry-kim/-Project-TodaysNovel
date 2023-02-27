@@ -15,12 +15,8 @@ const Pink = () => {
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
   const sessionCart = sessionStorage.getItem("cart");
-  let searchPinkItems = [];
   const [searchWord, setSearchWord] = useState("");
-
-  useEffect(() => {
-    console.log("댕ㅈ짜증");
-  }, [pinkItems]);
+  const [searchedItems, setSearchedItems] = useState("");
 
   useEffect(() => {
     console.log(cart);
@@ -57,6 +53,13 @@ const Pink = () => {
     console.log(cart);
   };
 
+  let newPinkItems = pinkItems.filter((item) => {
+    return item.title
+      .replace(" ", "")
+      .toLocaleLowerCase()
+      .includes(searchWord.toLocaleLowerCase().replace(" ", ""));
+  });
+
   return (
     <div className="Pink-wp">
       <h1>Pink</h1>
@@ -64,77 +67,45 @@ const Pink = () => {
         action=""
         onSubmit={(e) => {
           e.preventDefault();
-          let newPinkItems = pinkItems.filter((item) =>
-            item.title.toLowerCase().includes(searchWord)
-          );
-          searchPinkItems = newPinkItems;
-          console.log(searchPinkItems);
+          setSearchWord(searchedItems);
         }}
       >
         <input
           type="text"
           onChange={(e) => {
-            setSearchWord(e.target.value);
+            setSearchedItems(e.target.value);
           }}
         />
         <input type="submit" value="search" />
       </form>
       <div className="Pink-itembox">
-        {searchPinkItems.length >= 0 ?
-          pinkItems.map((item) => (
-              <div className="Pink-itemdiv">
-                <img src={require(`../img/${item.image}`)} alt="no image" />
-                <h3>{item.title}</h3>
-                <button
-                  onClick={() => {
-                    navigate(`/pink/${item.itemId}`);
-                  }}
-                >
-                  detail
-                </button>
-                <button
-                  onClick={() => {
-                    const selectedItem = cart.find(
-                      (si) => si.itemId == item.itemId
-                    );
-                    if (selectedItem) {
-                      alert("이미 추가된 상품입니다");
-                    } else {
-                      insertItem(item);
-                    }
-                  }}
-                >
-                  Add Cart
-                </button>
-              </div>
-            ))
-          : searchPinkItems.map((item) => (
-              <div className="Pink-itemdiv">
-                <img src={require(`../img/${item.image}`)} alt="no image" />
-                <h3>{item.title}</h3>
-                <button
-                  onClick={() => {
-                    navigate(`/pink/${item.itemId}`);
-                  }}
-                >
-                  detail
-                </button>
-                <button
-                  onClick={() => {
-                    const selectedItem = cart.find(
-                      (si) => si.itemId == item.itemId
-                    );
-                    if (selectedItem) {
-                      alert("이미 추가된 상품입니다");
-                    } else {
-                      insertItem(item);
-                    }
-                  }}
-                >
-                  Add Cart
-                </button>
-              </div>
-            ))}
+        {newPinkItems.map((item) => (
+          <div className="Pink-itemdiv">
+            <img src={require(`../img/${item.image}`)} alt="no image" />
+            <h3>{item.title}</h3>
+            <button
+              onClick={() => {
+                navigate(`/pink/${item.itemId}`);
+              }}
+            >
+              detail
+            </button>
+            <button
+              onClick={() => {
+                const selectedItem = cart.find(
+                  (si) => si.itemId == item.itemId
+                );
+                if (selectedItem) {
+                  alert("이미 추가된 상품입니다");
+                } else {
+                  insertItem(item);
+                }
+              }}
+            >
+              Add Cart
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

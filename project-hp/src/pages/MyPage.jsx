@@ -6,6 +6,7 @@ import { changeUserInfo } from "../modules/user";
 import "../css/MyPage.css";
 import ReviewModal from "../components/ReviewModal";
 import { useNavigate } from "react-router-dom";
+import PostModal from "../components/PostModal";
 
 const MyPage = () => {
   const dispatch = useDispatch();
@@ -19,17 +20,21 @@ const MyPage = () => {
   const [pw, setPw] = useState(currentUser.pw);
   const [tel, setTel] = useState(currentUser.tel);
   const [email, setEmail] = useState(currentUser.email);
-  const [adress, setAdress] = useState(currentUser.adress);
+  const [post, setPost] = useState(currentUser.post);
+  const [restAdress, setRestAdress] = useState(currentUser.restAdress);
+  const [additionalAdress, setAdditionalAdress] = useState(
+    currentUser.additionalAdress
+  );
   const [reviewModal, setReviewModal] = useState(false);
+  const [postModal, setPostModal] = useState(false);
 
   useEffect(() => {
-    sessionStorage.setItem("name", "진혜");
     console.log(sessionStorage.getItem("name"));
   }, []);
 
-  const checkUserInfo = () => {
-    // 모달 추가해서 수정하기!
-  };
+  // const checkUserInfo = () => {
+  //   // 모달 추가해서 수정하기!
+  // };
 
   const changeProfile = () => {
     const profile = {
@@ -38,7 +43,9 @@ const MyPage = () => {
       pw: pw,
       tel: tel,
       email: email,
-      adress: adress,
+      post: post,
+      restAdress: restAdress,
+      additionalAdress: additionalAdress,
     };
     dispatch(changeUserInfo(profile));
   };
@@ -96,15 +103,28 @@ const MyPage = () => {
           value={email}
         />
         <br />
-        <label htmlFor="">adress</label>
-        <input
+        {/* 우편번호 */}
+        <label htmlFor="">address</label>
+        <input type="text" disabled value={post} />
+        <button
+          disabled={!changeInfo}
+          onClick={() => {
+            setPostModal(true);
+          }}
+        >
+          Search Postnumber
+        </button>{" "}
+        <br />
+        <input type="text" disabled value={restAdress} /> <br />
+        <input type="text" disabled={!changeInfo} value={additionalAdress} />
+        {/* <input
           type="text"
           disabled={!changeInfo}
           onChange={(e) => {
             setAdress(e.target.value);
           }}
           value={adress}
-        />
+        /> */}
         <br />
         {changeInfo ? (
           <button
@@ -121,7 +141,7 @@ const MyPage = () => {
           <button
             onClick={() => {
               setChageInfo(true);
-              checkUserInfo();
+              // checkUserInfo();
             }}
           >
             Modify
@@ -137,7 +157,7 @@ const MyPage = () => {
               <button
                 onClick={() => {
                   setReviewModal(true);
-                  navigate(`/mypage/${p.itemId}`)
+                  navigate(`/mypage/${p.itemId}`);
                 }}
               >
                 review
@@ -154,6 +174,9 @@ const MyPage = () => {
           />
         ) : null}
       </div>
+      {postModal ? (
+        <PostModal postModal={postModal} setPostModal={setPostModal} />
+      ) : null}
     </div>
   );
 };
