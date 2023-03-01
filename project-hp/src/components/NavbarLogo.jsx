@@ -5,7 +5,7 @@ const NavbarLogo = () => {
 
   return (  
     <div>
-      <h1 onClick={()=>{navigate('/')}} >Today's Book</h1>
+      <h1 onClick={()=>{navigate('/')}} >Today's Novel</h1>
     </div>
   );
 }

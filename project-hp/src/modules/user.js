@@ -43,6 +43,8 @@ export const user = createSlice({
     },
     changeCart : (state, action) => {
       const parseCartState = action.payload;
+      console.log(parseCartState)
+      console.log(parseCartState[0].id);
       if(parseCartState[0]){
         const sameUser = state.userList.find((user)=>(user.id == parseCartState[0].id));
         console.log(sameUser);

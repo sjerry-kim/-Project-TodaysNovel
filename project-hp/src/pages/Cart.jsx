@@ -55,9 +55,10 @@ const Cart = () => {
       console.log("장바구니 추가 상품 없음");
     } else if (currentUser && parseCart[0].id != "null") {
       console.log(parseCart[0]);
+      console.log('두번째')
       dispatch(changeCart(parseCart));
       console.log(currentUser.cart);
-    } else if (currentUser && parseCart[0].id == "null") {
+    } else if (currentUser && parseCart[0].id == null) {
       console.log("로그인 하기 전 추가한 상품 있음");
       // cart.forEach((p)=>(p.id = sessionId))
       console.log(cart);
@@ -199,11 +200,17 @@ const Cart = () => {
             <p>{total}</p>
             <button
               onClick={() => {
-                if (currentUser && parseCart[0].id == "null") {
-                  cart.forEach((p) => (p.id = sessionId));
+                if (currentUser && parseCart[0].id == null) {
+                  console.log(cart);
+                  cart.forEach((p) => {
+                    console.log(p)
+                    console.log(p.id)
+                    console.log(sessionId)
+                    p.id = sessionId
+                  });
                   console.log(cart);
                 }
-                console.log()
+
                 if(checkedList.length == 0){
                   alert("주문할 상품을 선택하세요")
                 }else{

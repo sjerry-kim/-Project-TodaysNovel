@@ -23,16 +23,22 @@ const Main = () => {
     const stringfyCart = JSON.stringify(cart);
     sessionStorage.setItem("cart", stringfyCart);
     let parseCart = JSON.parse(sessionCart);
+    console.log(currentUser);
     // 옵셔널 체이닝 (optional chaining)🔥
     if (parseCart?.[0] == undefined) {
       console.log("장바구니 추가 상품 없음");
-    } else if (currentUser && parseCart[0].id != "null") {
-      console.log(parseCart[0]);
+    } else if (currentUser && parseCart[0].id == null) {
+      cart.forEach((p) => (p.id = sessionId));
+      console.log("로그인 하기 전 장바구니 있음");
+      console.log(cart);
+    } else if (currentUser && parseCart[0].id != null) {
+      console.log(parseCart[0].id);
+      console.log('세번째')
       dispatch(changeCart(parseCart));
       console.log(currentUser.cart);
-    } else if (currentUser && parseCart[0].id == "null") {
-      console.log("로그인 하기 전 장바구니 있음");
     }
+
+    console.log("댕짜증");
   }, [cart, sessionCart]);
 
   const insertItem = (item) => {
@@ -82,7 +88,7 @@ const Main = () => {
         {newMainItems.map((item) => (
           <div className="Main-itemdiv">
             <img src={require(`../img/${item.image}`)} alt="no image" />
-            <h3>{item.title}</h3>
+            <p>{item.title}</p>
             <button
               onClick={() => {
                 navigate(`/main/${item.itemId}`);

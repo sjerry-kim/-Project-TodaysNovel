@@ -44,8 +44,10 @@ const SignIn = () => {
     <div className='SignIn-wp'>
       <form action="" onSubmit={(e)=>{
         e.preventDefault();
-        Login();
-        window.location.reload();
+        setTimeout(()=>{
+          Login();
+          window.location.reload();
+        }, 1500)
         }}>
         <label htmlFor="">Id</label>
         <input type="text" onChange={(e)=>{setId(e.target.value)}}/>
