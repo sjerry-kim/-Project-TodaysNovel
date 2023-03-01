@@ -25,6 +25,8 @@ const PostModal = (props) => {
     
     // document.addEventListener('touchstart', handler); // 모바일 대응
 
+
+    
     return () => {
       // 이벤트 핸들러 해제
       document.removeEventListener("mousedown", handler);

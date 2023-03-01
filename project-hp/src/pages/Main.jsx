@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-import "../css/Pink.css";
+import "../css/Main.css";
 import { addItem } from "../modules/cart";
 import { changeCart } from "../modules/user";
 
-const Pink = () => {
-  const pinkItems = useSelector((state) => state.pinkState);
+const Main = () => {
+  const mainItems = useSelector((state) => state.mainState);
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const Pink = () => {
     console.log(cart);
   };
 
-  let newPinkItems = pinkItems.filter((item) => {
+  let newMainItems = mainItems.filter((item) => {
     return item.title
       .replace(" ", "")
       .toLocaleLowerCase()
@@ -61,8 +61,8 @@ const Pink = () => {
   });
 
   return (
-    <div className="Pink-wp">
-      <h1>Pink</h1>
+    <div className="Main-wp">
+      <h1>Main</h1>
       <form
         action=""
         onSubmit={(e) => {
@@ -78,14 +78,14 @@ const Pink = () => {
         />
         <input type="submit" value="search" />
       </form>
-      <div className="Pink-itembox">
-        {newPinkItems.map((item) => (
-          <div className="Pink-itemdiv">
+      <div className="Main-itembox">
+        {newMainItems.map((item) => (
+          <div className="Main-itemdiv">
             <img src={require(`../img/${item.image}`)} alt="no image" />
             <h3>{item.title}</h3>
             <button
               onClick={() => {
-                navigate(`/pink/${item.itemId}`);
+                navigate(`/main/${item.itemId}`);
               }}
             >
               detail
@@ -111,4 +111,4 @@ const Pink = () => {
   );
 };
 
-export default Pink;
+export default Main;

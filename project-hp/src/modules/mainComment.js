@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const name = "pinkComment";
+const name = "mainComment";
 const initialState = [
 ];
 
-export const pinkComment = createSlice({
+export const mainComment = createSlice({
   name,
   initialState,
   reducers :{
@@ -19,6 +19,6 @@ export const pinkComment = createSlice({
   }
 })
 
-export const {addComment, deleteComment} = pinkComment.actions;
+export const {addComment, deleteComment} = mainComment.actions;
 
-export default pinkComment.reducer;
+export default mainComment.reducer;

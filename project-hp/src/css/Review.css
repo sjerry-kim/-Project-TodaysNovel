@@ -20,3 +20,9 @@
     width: 500px;
     height: 600px;
 }
+
+.ReviewModal-div img{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}

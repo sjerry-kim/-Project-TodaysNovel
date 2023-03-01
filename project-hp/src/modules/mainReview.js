@@ -1,10 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const name = "pinkReview";
-const initialState = [
-];
+const name = "mainReview";
+const initialState = [];
 
-export const pinkReview = createSlice({
+export const mainReview = createSlice({
   name,
   initialState,
   reducers :{
@@ -21,6 +20,6 @@ export const pinkReview = createSlice({
   }
 })
 
-export const {addReview, deleteReview} = pinkReview.actions;
+export const {addReview, deleteReview} = mainReview.actions;
 
-export default pinkReview.reducer;
+export default mainReview.reducer;

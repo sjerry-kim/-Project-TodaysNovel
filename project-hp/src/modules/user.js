@@ -12,7 +12,7 @@ const initialState = {
       email: "vipisu_976@naver.com",
       post : "48710",
       restAdress: "부산광역시 동구 중앙대로 357",
-      additionalAdress: "101동 1207호",
+      additionalAdress: "101동 5505호",
       cart: [],
       qnaComment: [],
       orderedProducts : [],
@@ -58,7 +58,9 @@ export const user = createSlice({
       stateCurrentUser.pw = currentUser.pw;
       stateCurrentUser.tel = currentUser.tel;
       stateCurrentUser.email = currentUser.email;
-      stateCurrentUser.adress = currentUser.adress;
+      stateCurrentUser.post = currentUser.post;
+      stateCurrentUser.restAdress = currentUser.restAdress;
+      stateCurrentUser.additionalAdress = currentUser.additionalAdress;
     },
     buyCheckedProduct : (state, action) => {
       const purchaseArray = action.payload;

@@ -1,20 +1,19 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import '../css/PinkProductsComment.css';
-import { addComment, deleteComment, modifyComment } from '../modules/pinkComment';
+import '../css/MainProductsComment.css';
+import { addComment, deleteComment, modifyComment } from '../modules/mainComment';
 
 let commentId = 0;
 
-const PinkProductsComment = (props) => {
-  const {id, pinkItems, products} = props;
+const MainProductsComment = (props) => {
+  const {id, mainItems, products} = props;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
-  // const findUser = user.userList.find((a)=>a.id == );
-  const pinkComment = useSelector((state)=>state.pinkComment);
-  const pinkCommentId = pinkComment.filter((c)=>(
+  const mainComment = useSelector((state)=>state.mainComment);
+  const mainCommentId = mainComment.filter((c)=>(
     c.productId == id
   ))
   const [comment, setComment] = useState("");
@@ -47,7 +46,7 @@ const PinkProductsComment = (props) => {
       </div>
       <div className="PinkProductsComment-printdiv">
         {
-          pinkCommentId.map((c,i)=>(
+          mainCommentId.map((c,i)=>(
             <div key={i}>
               <p>{c.userName}</p>
               <p>{c.commentText}</p>
@@ -56,7 +55,7 @@ const PinkProductsComment = (props) => {
                   <button 
                   onClick={()=>{
                     dispatch(deleteComment(c))
-                    console.log(pinkComment)
+                    // console.log(mainComment)
                     }}>delete</button>
                 ):(
                   ""
@@ -70,4 +69,4 @@ const PinkProductsComment = (props) => {
   );
 }
 
-export default PinkProductsComment;
+export default MainProductsComment;

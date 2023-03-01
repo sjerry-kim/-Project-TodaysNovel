@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeUserInfo } from "../modules/user";
 
 import "../css/MyPage.css";
-import ReviewModal from "../components/ReviewModal";
+import MyPageReview from "../components/MyPageReview";
 import { useNavigate } from "react-router-dom";
 import PostModal from "../components/PostModal";
 
@@ -115,8 +115,17 @@ const MyPage = () => {
           Search Postnumber
         </button>{" "}
         <br />
-        <input type="text" disabled value={restAdress} /> <br />
-        <input type="text" disabled={!changeInfo} value={additionalAdress} />
+        <input 
+          type="text" 
+          disabled 
+          value={restAdress} /> <br />
+        <input 
+          type="text" 
+          disabled={!changeInfo} 
+          onChange={(e)=>{
+            setAdditionalAdress(e.target.value)
+          }}
+          value={additionalAdress} />
         {/* <input
           type="text"
           disabled={!changeInfo}
@@ -168,14 +177,14 @@ const MyPage = () => {
           <p>주문한 상품 없음</p>
         )}
         {reviewModal ? (
-          <ReviewModal
+          <MyPageReview
             reviewModal={reviewModal}
             setReviewModal={setReviewModal}
           />
         ) : null}
       </div>
       {postModal ? (
-        <PostModal postModal={postModal} setPostModal={setPostModal} />
+        <PostModal postModal={postModal} setPostModal={setPostModal} setPost={setPost} setRestAdress={setRestAdress} />
       ) : null}
     </div>
   );

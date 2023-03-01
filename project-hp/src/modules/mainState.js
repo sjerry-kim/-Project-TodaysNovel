@@ -1,9 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const name = "pinkState";
+const name = "MainState";
 const initialState = [
   {
-    // area: "pink",
     title: "Lovehate",
     itemId: 0,
     image: "pink01.jpeg",
@@ -12,7 +11,6 @@ const initialState = [
     isChecked: true,
   },
   {
-    // area: "pink",
     title: "Loss",
     itemId: 1,
     image: "pink02.jpeg",
@@ -21,7 +19,6 @@ const initialState = [
     isChecked: true,
   },
   {
-    // area: "pink",
     title: "Crush",
     itemId: 2,
     image: "pink03.jpeg",
@@ -30,7 +27,6 @@ const initialState = [
     isChecked: true,
   },
   {
-    // area: "pink",
     title: "Like",
     itemId: 3,
     image: "pink04.jpeg",
@@ -39,7 +35,6 @@ const initialState = [
     isChecked: true,
   },
   {
-    // area: "pink",
     title: "Love",
     itemId: 4,
     image: "pink05.jpeg",
@@ -48,7 +43,6 @@ const initialState = [
     isChecked: true,
   },
   {
-    // area: "pink",
     title: "break",
     itemId: 5,
     image: "pink06.jpeg",
@@ -58,13 +52,11 @@ const initialState = [
   }
 ];
 
-export const pinkState = createSlice({
+export const mainState = createSlice({
   name,
   initialState,
-  reducers: {
-  }
 })
 
-export const {} = pinkState.actions;
+export const {} = mainState.actions;
 
-export default pinkState.reducer;
+export default mainState.reducer;
