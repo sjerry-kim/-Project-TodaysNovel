@@ -70,9 +70,6 @@ export const user = createSlice({
       const sameUser = state.userList.find((user)=>(user.id == purchaseArray[0].id));
       console.log(sameUser);
       sameUser.orderedProducts = purchaseArray;
-      // sameUser.orderedProducts.push({
-      //   purchaseArray
-      // })
     }
   }
 })

@@ -59,10 +59,13 @@ export const cart = createSlice({
     },
     EmptyCart : (state) => {
       return state = initialState;
+    },
+    ChangeCartId : (state, action) =>{
+      state.forEach((p)=>{p.id = action.payload})
     }
   }
 })
 
-export const {addItem, deleteItem, incrementItem, decrementItem, checkItem, checkAllItem, deleteCheckedItem, EmptyCart} = cart.actions;
+export const {addItem, deleteItem, incrementItem, decrementItem, checkItem, checkAllItem, deleteCheckedItem, EmptyCart, ChangeCartId} = cart.actions;
 
 export default cart.reducer;

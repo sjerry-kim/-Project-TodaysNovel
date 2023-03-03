@@ -46,7 +46,6 @@ const SignIn = () => {
         e.preventDefault();
         setTimeout(()=>{
           Login();
-          window.location.reload();
         }, 1500)
         }}>
         <label htmlFor="">Id</label>

@@ -27,17 +27,16 @@ const Main = () => {
     // 옵셔널 체이닝 (optional chaining)🔥
     if (parseCart?.[0] == undefined) {
       console.log("장바구니 추가 상품 없음");
-    } else if (currentUser && parseCart[0].id == null) {
-      cart.forEach((p) => (p.id = sessionId));
+    } else if (currentUser && parseCart[0].id != currentUser.id){
+      // cart.forEach((p) => (p.id = sessionId));
       console.log("로그인 하기 전 장바구니 있음");
       console.log(cart);
-    } else if (currentUser && parseCart[0].id != null) {
+    } else if (currentUser && parseCart[0].id == currentUser.id){
       console.log(parseCart[0].id);
-      console.log('세번째')
+      console.log('장바구니 id 변경됨');
       dispatch(changeCart(parseCart));
       console.log(currentUser.cart);
     }
-
     console.log("댕짜증");
   }, [cart, sessionCart]);
 
@@ -53,7 +52,6 @@ const Main = () => {
         itemCount: 1,
         itemTotalCount: 1,
         isChecked: item.isChecked,
-        area: item.area,
       })
     );
     console.log(cart);

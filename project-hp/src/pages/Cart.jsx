@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import "../css/Cart.css";
 import {
+  ChangeCartId,
   checkAllItem,
   checkItem,
   decrementItem,
@@ -49,29 +50,23 @@ const Cart = () => {
     console.log(cart);
     const stringfyCart = JSON.stringify(cart);
     sessionStorage.setItem("cart", stringfyCart);
-    // let parseCart = JSON.parse(sessionCart);
-    // console.log(parseCart[0]);
+    let parseCart = JSON.parse(sessionCart);
+    console.log(currentUser);
+    // 옵셔널 체이닝 (optional chaining)🔥
     if (parseCart?.[0] == undefined) {
       console.log("장바구니 추가 상품 없음");
-    } else if (currentUser && parseCart[0].id != "null") {
-      console.log(parseCart[0]);
-      console.log('두번째')
+    } else if (currentUser && parseCart[0].id != currentUser.id) {
+      dispatch(ChangeCartId(sessionId));
+      console.log("로그인 하기 전 장바구니 있음");
+      console.log(cart);
+    } else if (currentUser && parseCart[0].id == currentUser.id) {
+      console.log(parseCart[0].id);
+      console.log('장바구니 id 변경됨')
       dispatch(changeCart(parseCart));
       console.log(currentUser.cart);
-    } else if (currentUser && parseCart[0].id == null) {
-      console.log("로그인 하기 전 추가한 상품 있음");
-      // cart.forEach((p)=>(p.id = sessionId))
-      console.log(cart);
     }
+    console.log("왕짜증");
   }, [cart, sessionCart]);
-
-  // useEffect(()=>{
-  //   cart.forEach((p)=>{
-  //     if(p.isChecked){
-  //       buyList.push(p);
-  //     }
-  //   })
-  // },[allChecked])
 
   const handleCheckboxChange = () => {
     console.log(allChecked);
@@ -200,17 +195,6 @@ const Cart = () => {
             <p>{total}</p>
             <button
               onClick={() => {
-                if (currentUser && parseCart[0].id == null) {
-                  console.log(cart);
-                  cart.forEach((p) => {
-                    console.log(p)
-                    console.log(p.id)
-                    console.log(sessionId)
-                    p.id = sessionId
-                  });
-                  console.log(cart);
-                }
-
                 if(checkedList.length == 0){
                   alert("주문할 상품을 선택하세요")
                 }else{

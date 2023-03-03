@@ -7,7 +7,6 @@ const initialState = [
     itemId: 0,
     image: "book01.jpeg",
     price: 3,
-    // effect : "★★★",
     isChecked: true,
   },
   {
@@ -15,7 +14,6 @@ const initialState = [
     itemId: 1,
     image: "book02.jpeg",
     price: 2,
-    // effect : "★★★★",
     isChecked: true,
   },
   {
@@ -23,7 +21,6 @@ const initialState = [
     itemId: 2,
     image: "book03.jpeg",
     price: 1,
-    // effect : "★",
     isChecked: true,
   },
   {
@@ -31,7 +28,6 @@ const initialState = [
     itemId: 3,
     image: "book04.jpeg",
     price: 10,
-    // effect : "★★★★",
     isChecked: true,
   },
   {
@@ -39,7 +35,6 @@ const initialState = [
     itemId: 4,
     image: "book05.jpeg",
     price: 20,
-    // effect : "★★★★",
     isChecked: true,
   },
   {
@@ -47,23 +42,20 @@ const initialState = [
     itemId: 5,
     image: "book06.jpeg",
     price: 5,
-    // effect : "★",
     isChecked: true,
   },
   {
-    title: "내일의 으뜸",
+    title: "벚꽃나무 아래",
     itemId: 6,
     image: "book07.jpeg",
     price: 5,
-    // effect : "★",
     isChecked: true,
   },
   {
-    title: "내일의 으뜸",
+    title: "파인드 미",
     itemId: 7,
     image: "book08.jpeg",
     price: 5,
-    // effect : "★",
     isChecked: true,
   }
 ];
