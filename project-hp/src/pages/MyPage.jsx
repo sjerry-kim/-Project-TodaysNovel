@@ -27,14 +27,11 @@ const MyPage = () => {
   );
   const [reviewModal, setReviewModal] = useState(false);
   const [postModal, setPostModal] = useState(false);
+  let [reviewedId, setReviewedId] = useState();
 
   useEffect(() => {
     console.log(sessionStorage.getItem("name"));
   }, []);
-
-  // const checkUserInfo = () => {
-  //   // 모달 추가해서 수정하기!
-  // };
 
   const changeProfile = () => {
     const profile = {
@@ -126,14 +123,6 @@ const MyPage = () => {
             setAdditionalAdress(e.target.value)
           }}
           value={additionalAdress} />
-        {/* <input
-          type="text"
-          disabled={!changeInfo}
-          onChange={(e) => {
-            setAdress(e.target.value);
-          }}
-          value={adress}
-        /> */}
         <br />
         {changeInfo ? (
           <button
@@ -159,20 +148,27 @@ const MyPage = () => {
       </div>
       <div className="MyPage-purchasedProducts">
         {currentUser.orderedProducts[0] ? (
-          currentUser.orderedProducts.map((p) => (
-            <div className="MyPage-purchasedProducts-div">
+          currentUser.orderedProducts.map((p) => {
+            return(
+              <div className="MyPage-purchasedProducts-div">
               <p>{p.title}</p>
+              <p>{p.myPageId}</p>
+              <p>{p.isReviewed ? "후기 작성 완료" : "후기 작성 필요"}</p>
               <img src={require(`../img/${p.image}`)} alt="no image" />
               <button
                 onClick={() => {
                   setReviewModal(true);
+                  // reviewedId.push(p.myPageId);
+                  console.log(reviewedId);
+                  // setReviewedId([reviewedId, p.myPageId])
                   navigate(`/mypage/${p.itemId}`);
                 }}
               >
                 review
               </button>
             </div>
-          ))
+            )
+          })
         ) : (
           <p>주문한 상품 없음</p>
         )}
@@ -180,11 +176,17 @@ const MyPage = () => {
           <MyPageReview
             reviewModal={reviewModal}
             setReviewModal={setReviewModal}
+            reviewedId={reviewedId}
           />
         ) : null}
       </div>
       {postModal ? (
-        <PostModal postModal={postModal} setPostModal={setPostModal} setPost={setPost} setRestAdress={setRestAdress} />
+        <PostModal 
+          postModal={postModal} 
+          setPostModal={setPostModal} 
+          setPost={setPost} 
+          setRestAdress={setRestAdress} 
+        />
       ) : null}
     </div>
   );

@@ -16,6 +16,7 @@ import {
 import { buyCheckedProduct, changeCart } from "../modules/user";
 
 let purchaseArray = [];
+let myPageId = 0;
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -80,7 +81,12 @@ const Cart = () => {
   const buyCheckedProducts = () => {
     cart.forEach((p) => {
       if (p.isChecked) {
-        let newPurchaseArray = purchaseArray.concat(p);
+        let newPurchaseArray = purchaseArray.concat(
+          {...p,
+            myPageId: myPageId++,
+            isReviewed: false
+          }
+          );
         purchaseArray = newPurchaseArray;
         console.log(newPurchaseArray);
         console.log(purchaseArray);

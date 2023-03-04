@@ -11,7 +11,7 @@ import styled from "styled-components";
 let reviewId = 0;
 
 const MyPageReview = (props) => {
-  const { reviewModal, setReviewModal } = props;
+  const { reviewModal, setReviewModal, reviewedId } = props;
   const { id } = useParams();
   const [imgId, setImgId] = useState(1);
   const user = useSelector((state) => state.user);
@@ -82,6 +82,8 @@ const MyPageReview = (props) => {
     setImgId(imgId+1)
     console.log(imgId);
   },[])
+
+  console.log(reviewedId);
 
   return (
     <div>
