@@ -16,7 +16,7 @@ import {
 import { buyCheckedProduct, changeCart } from "../modules/user";
 
 let purchaseArray = [];
-let myPageId = 0;
+const myPageId = 0;
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Cart = () => {
   // const [changeCart, setChangeCart] = useState(currentUser.cart);
   // const [remainCart, setRemainCart] = useState(cart);
   // const [parseCartState, setParseCartState] = useState();
-
+  
   useEffect(() => {
     cart.forEach((item) => {
       let totalPrice = item.price * item.itemCount;

@@ -16,7 +16,16 @@ export const mainReview = createSlice({
       return state.filter((r) => (
         r.reviewId !== action.payload.reviewId
       ))
-    }
+    },
+    // limitReview : (state, action) => {
+    //   console.log(action.payload);
+    //   console.log(state[0].isReviewed)
+    //   const reviewed = state.find((r)=>(
+    //     r.myPageId == action.payload
+    //   ))
+    //   console.log(reviewed);
+    //   reviewed.isReviewed = true;
+    // }
   }
 })
 

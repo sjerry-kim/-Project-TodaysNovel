@@ -1,20 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/Review.css";
-import { addReview } from "../modules/mainReview";
+import { addReview} from "../modules/mainReview";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
+import { limitReview } from "../modules/user";
 
 let reviewId = 0;
 
 const MyPageReview = (props) => {
-  const { reviewModal, setReviewModal, reviewedId } = props;
+  const { reviewModal, setReviewModal } = props;
   const { id } = useParams();
   const [imgId, setImgId] = useState(1);
   const user = useSelector((state) => state.user);
+  const review = useSelector((state) => state.mainReview);
+  const navigate = useNavigate();
   const mainItems = useSelector((state) => state.mainState);
   const reviewItem = mainItems.find((item)=>item.itemId == id);
   const dispatch = useDispatch();
@@ -37,7 +40,8 @@ const MyPageReview = (props) => {
   const starArray = [0, 1, 2, 3, 4];
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [starScore, setStarScore] = useState();
-
+  
+  
   const handleStarClick = (sIdx) => {
     console.log(sIdx);
     let clickStates = [...clicked];
@@ -83,7 +87,6 @@ const MyPageReview = (props) => {
     console.log(imgId);
   },[])
 
-  console.log(reviewedId);
 
   return (
     <div>
@@ -130,7 +133,12 @@ const MyPageReview = (props) => {
                 date: userDate,
                 rate: starScore
               })
-            );
+              );
+              dispatch(limitReview({
+                currentUser : sessionId,
+                myPageId: sessionStorage.getItem("myPageId")
+              }))
+              navigate('/mypage')
           }}
         >
           save

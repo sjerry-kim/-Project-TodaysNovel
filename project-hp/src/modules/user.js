@@ -70,10 +70,20 @@ export const user = createSlice({
       const sameUser = state.userList.find((user)=>(user.id == purchaseArray[0].id));
       console.log(sameUser);
       sameUser.orderedProducts = purchaseArray;
+    },
+    limitReview : (state, action) => {
+      const reviewInfo = action.payload;
+      const sameUser = state.userList.find((user)=>(
+        user.id == reviewInfo.currentUser
+      ))
+      const sameReview = sameUser.orderedProducts.find((r)=>(
+        r.myPageId = reviewInfo.myPageId
+      ))
+      sameReview.isReviewed = true;
     }
   }
 })
 
-export const {signUp, signIn, signOut, changeCart, changeUserInfo, buyCheckedProduct} = user.actions;
+export const {signUp, signIn, signOut, changeCart, changeUserInfo, buyCheckedProduct, limitReview} = user.actions;
 
 export default user.reducer;

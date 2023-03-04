@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeUserInfo } from "../modules/user";
+import { changeUserInfo, setIndex } from "../modules/user";
 
 import "../css/MyPage.css";
 import MyPageReview from "../components/MyPageReview";
@@ -12,6 +12,7 @@ const MyPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+  const review = useSelector((state) => state.mainReview);
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
   const [changeInfo, setChageInfo] = useState(false);
@@ -27,11 +28,10 @@ const MyPage = () => {
   );
   const [reviewModal, setReviewModal] = useState(false);
   const [postModal, setPostModal] = useState(false);
-  let [reviewedId, setReviewedId] = useState();
 
-  useEffect(() => {
-    console.log(sessionStorage.getItem("name"));
-  }, []);
+  useEffect(()=>{
+    console.log(review[0])
+  })
 
   const changeProfile = () => {
     const profile = {
@@ -148,9 +148,9 @@ const MyPage = () => {
       </div>
       <div className="MyPage-purchasedProducts">
         {currentUser.orderedProducts[0] ? (
-          currentUser.orderedProducts.map((p) => {
+          currentUser.orderedProducts.map((p, i) => {
             return(
-              <div className="MyPage-purchasedProducts-div">
+              <div key={i} className="MyPage-purchasedProducts-div">
               <p>{p.title}</p>
               <p>{p.myPageId}</p>
               <p>{p.isReviewed ? "후기 작성 완료" : "후기 작성 필요"}</p>
@@ -158,27 +158,26 @@ const MyPage = () => {
               <button
                 onClick={() => {
                   setReviewModal(true);
-                  // reviewedId.push(p.myPageId);
-                  console.log(reviewedId);
-                  // setReviewedId([reviewedId, p.myPageId])
+                  sessionStorage.setItem("myPageId", p.myPageId)
                   navigate(`/mypage/${p.itemId}`);
                 }}
+                disabled={p.isReviewed? true : false}
               >
                 review
               </button>
+              {reviewModal ? (
+          <MyPageReview
+            reviewModal={reviewModal}
+            setReviewModal={setReviewModal}
+          />
+        ) : null}
             </div>
             )
           })
         ) : (
           <p>주문한 상품 없음</p>
         )}
-        {reviewModal ? (
-          <MyPageReview
-            reviewModal={reviewModal}
-            setReviewModal={setReviewModal}
-            reviewedId={reviewedId}
-          />
-        ) : null}
+
       </div>
       {postModal ? (
         <PostModal 
