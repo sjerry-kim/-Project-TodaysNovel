@@ -73,13 +73,17 @@ export const user = createSlice({
     },
     limitReview : (state, action) => {
       const reviewInfo = action.payload;
+      console.log(reviewInfo);
       const sameUser = state.userList.find((user)=>(
         user.id == reviewInfo.currentUser
       ))
+      console.log(sameUser)
       const sameReview = sameUser.orderedProducts.find((r)=>(
-        r.myPageId = reviewInfo.myPageId
+        r.myPageId == reviewInfo.myPageId
       ))
+      console.log(sameReview.isReviewed)
       sameReview.isReviewed = true;
+      console.log(sameReview.isReviewed)
     }
   }
 })

@@ -138,6 +138,7 @@ const MyPageReview = (props) => {
                 currentUser : sessionId,
                 myPageId: sessionStorage.getItem("myPageId")
               }))
+              alert("리뷰 작성을 완료하였습니다")
               navigate('/mypage')
           }}
         >

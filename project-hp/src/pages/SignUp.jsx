@@ -18,12 +18,8 @@ const SignUp = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // Modal
   const [postModal, setPostModal] = useState(false);
-
-  // useEffect(()=>{
-  //   setPost(sessionStorage.getItem("signPost"))
-  //   setRestAdress(sessionStorage.getItem("signAdress"))
-  // },[post, restAdress])
 
   const findUser = (newUser) => {
     const sameAccount = user.userList.find(

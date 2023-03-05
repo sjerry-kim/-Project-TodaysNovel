@@ -16,7 +16,7 @@ import {
 import { buyCheckedProduct, changeCart } from "../modules/user";
 
 let purchaseArray = [];
-const myPageId = 0;
+let myPageId = 0;
 
 const Cart = () => {
   const dispatch = useDispatch();

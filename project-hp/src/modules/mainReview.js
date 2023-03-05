@@ -17,18 +17,14 @@ export const mainReview = createSlice({
         r.reviewId !== action.payload.reviewId
       ))
     },
-    // limitReview : (state, action) => {
-    //   console.log(action.payload);
-    //   console.log(state[0].isReviewed)
-    //   const reviewed = state.find((r)=>(
-    //     r.myPageId == action.payload
-    //   ))
-    //   console.log(reviewed);
-    //   reviewed.isReviewed = true;
-    // }
+    modifyReview : (state, action) => {
+      const review = action.payload;
+      const sameReview = state.find((r)=>r.reviewId == review.reviewId );
+      sameReview.text = review.text;
+    }
   }
 })
 
-export const {addReview, deleteReview} = mainReview.actions;
+export const {addReview, deleteReview, modifyReview} = mainReview.actions;
 
 export default mainReview.reducer;

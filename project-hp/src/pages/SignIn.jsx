@@ -11,14 +11,10 @@ const SignIn = () => {
   const user = useSelector((state) => state.user);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
-  const [test, setTest] = useState(true);
+  // const [test, setTest] = useState(true);
   const sameAccount = user.userList.find((user)=>(user.id == id && user.pw == pw))
   const sameId = user.userList.find((user)=>(user.id == id));
   const samePw = user.userList.find((user)=>(user.pw == pw));
-  // const sessionId = sessionStorage.getItem("id");
-  // const currentUser = user.userList.find((user)=>(user.id == sessionId));
-  // const sessionCart = sessionStorage.getItem("cart");
-
 
   const Login = () => {
     if(sameAccount){

@@ -149,6 +149,7 @@ const MyPage = () => {
       <div className="MyPage-purchasedProducts">
         {currentUser.orderedProducts[0] ? (
           currentUser.orderedProducts.map((p, i) => {
+            console.log(p)
             return(
               <div key={i} className="MyPage-purchasedProducts-div">
               <p>{p.title}</p>

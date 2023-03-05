@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteReview } from "../modules/mainReview";
+import { deleteReview, modifyReview } from "../modules/mainReview";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
+import MainReviewModal from "./MainReviewModal";
 
 const MainReview = (props) => {
   const {productsReviews, reviews} = props;
@@ -10,6 +11,11 @@ const MainReview = (props) => {
   const user = useSelector((state) => state.user);
   const sessionId = sessionStorage.getItem("id");
   const currentUser = user.userList.find((user) => user.id == sessionId);
+  const [text, setText] = useState("");
+  const [modifyText, setModifyText] = useState(false);
+
+  // Modal
+  const [reviewModal, setReviewModal] = useState(false);
 
   useEffect(()=>{
     console.log(reviews);
@@ -87,8 +93,11 @@ const MainReview = (props) => {
               currentUser? 
                 currentUser.id == r.userId ?
                 <button onClick={()=>{
-                  dispatch(deleteReview(r));
-                }}>X</button>
+                  // dispatch(deleteReview(r));
+                  sessionStorage.setItem("reviewId", r.reviewId)
+                  setReviewModal(true)
+                  dispatch(modifyReview(r))
+                }}>리뷰 수정</button>
                 : ""
               : ""
             }
@@ -97,6 +106,15 @@ const MainReview = (props) => {
           )
           }) : "no reviews"
       }
+            {reviewModal ? (
+        <MainReviewModal 
+          reviewModal={reviewModal}
+          setReviewModal={setReviewModal}
+          text={text}
+          setText={setText}
+          setModifyText={setModifyText}
+          />
+      ) : null}
     </div>
   );
 }
