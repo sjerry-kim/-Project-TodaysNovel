@@ -15,7 +15,6 @@ import {
 } from "../modules/cart";
 import { buyCheckedProduct, changeCart } from "../modules/user";
 
-let purchaseArray = [];
 let myPageId = 0;
 
 const Cart = () => {
@@ -34,6 +33,7 @@ const Cart = () => {
   // const [changeCart, setChangeCart] = useState(currentUser.cart);
   // const [remainCart, setRemainCart] = useState(cart);
   // const [parseCartState, setParseCartState] = useState();
+  let purchaseArray = [];
   
   useEffect(() => {
     cart.forEach((item) => {
@@ -79,6 +79,7 @@ const Cart = () => {
   };
 
   const buyCheckedProducts = () => {
+    console.log()
     cart.forEach((p) => {
       if (p.isChecked) {
         let newPurchaseArray = purchaseArray.concat(
@@ -94,11 +95,10 @@ const Cart = () => {
     });
     dispatch(buyCheckedProduct(purchaseArray));
       dispatch(deleteCheckedItem());
-      console.log(currentUser.orderedProducts);
+      // console.log(currentUser.orderedProducts);
       let sPurchaseArray = JSON.stringify(purchaseArray);
       sessionStorage.setItem("reviewAble",sPurchaseArray);
         alert("주문완료!")
-
       navigate('/mypage');
   };
 

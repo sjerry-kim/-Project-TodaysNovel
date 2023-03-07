@@ -31,6 +31,7 @@ const MyPage = () => {
 
   useEffect(()=>{
     console.log(review[0])
+    console.log(currentUser)
   })
 
   const changeProfile = () => {

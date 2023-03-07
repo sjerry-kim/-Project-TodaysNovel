@@ -8,9 +8,9 @@ import { modifyReview } from "../modules/mainReview";
 const MainReviewModal = (props) => {
   const {reviewModal, setReviewModal, text, setText, setModifyText} = props;
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user);
-  // const sessionId = sessionStorage.getItem("id");
-  // const currentUser = user.userList.find((user) => user.id == sessionId);
+  const user = useSelector((state) => state.user);
+  const sessionId = sessionStorage.getItem("id");
+  const currentUser = user.userList.find((user) => user.id == sessionId);
   // const [text, setText] = useState("");
 
   // Modal 창을 useRef로 취득
@@ -73,6 +73,7 @@ const MainReviewModal = (props) => {
             if(window.confirm("리뷰를 수정하시겠습니까?")){
               alert("수정 완료되었습니다")
               dispatch(modifyReview({
+                userId: currentUser.id,
                 reviewId : sessionStorage.getItem("reviewId"),
                 text : text
               }));

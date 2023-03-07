@@ -19,9 +19,12 @@ export const mainReview = createSlice({
     },
     modifyReview : (state, action) => {
       const review = action.payload;
-      const sameReview = state.find((r)=>r.reviewId == review.reviewId );
+      const sameUser = state.filter((r)=>r.userId == review.userId)
+      console.log(sameUser.reviewId);
+      console.log(typeof(sameUser));
+      const sameReview = sameUser.find((r)=>r.reviewId == review.reviewId );
       sameReview.text = review.text;
-    }
+    },
   }
 })
 

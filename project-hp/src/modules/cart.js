@@ -58,7 +58,7 @@ export const cart = createSlice({
       return state.filter(item => !item.isChecked)
     },
     EmptyCart : (state) => {
-      return state = initialState;
+      return (state = []);
     },
     ChangeCartId : (state, action) =>{
       state.forEach((p)=>{p.id = action.payload})

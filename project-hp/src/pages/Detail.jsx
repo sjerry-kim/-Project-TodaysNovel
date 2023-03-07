@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import RecentBox from "../components/RecentBox";
 import MainProductsComment from "../components/MainProductsComment";
 import MainReview from "../components/MainReview";
 
@@ -29,6 +30,7 @@ const Detail = () => {
       </div>
       <MainReview reviews={reviews} productsReviews={productsReviews}/>
       <MainProductsComment id={id} mainItems={mainItems} products={products} />
+      <RecentBox />
     </div>
   );
 }

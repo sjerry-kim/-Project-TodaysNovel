@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import RecentBox from "../components/RecentBox";
 
 import "../css/Main.css";
 import { addItem } from "../modules/cart";
 import { changeCart } from "../modules/user";
+let recentBox = [];
 
 const Main = () => {
   const mainItems = useSelector((state) => state.mainState);
@@ -17,7 +19,7 @@ const Main = () => {
   const sessionCart = sessionStorage.getItem("cart");
   const [searchWord, setSearchWord] = useState("");
   const [searchedItems, setSearchedItems] = useState("");
-
+  
   useEffect(() => {
     console.log(cart);
     const stringfyCart = JSON.stringify(cart);
@@ -64,6 +66,17 @@ const Main = () => {
       .includes(searchWord.toLocaleLowerCase().replace(" ", ""));
   });
 
+  const pushRecentBox = (item) => {
+    const sameItem= recentBox.find((i)=>i.title == item.title);
+    console.log(sameItem)
+    if (!sameItem){
+      let newRecentBox = recentBox.concat(item);
+      recentBox = newRecentBox;
+      let jsonRecentBox = JSON.stringify(recentBox)
+      sessionStorage.setItem("recentBox", jsonRecentBox);
+    }
+  }
+
   return (
     <div className="Main-wp">
       <h1>Main</h1>
@@ -90,6 +103,7 @@ const Main = () => {
             <button
               onClick={() => {
                 navigate(`/main/${item.itemId}`);
+                pushRecentBox(item);
               }}
             >
               detail

@@ -8,6 +8,7 @@ import { signOut } from "../modules/user";
 const NavbarSide = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const review = useSelector((state) => state.mainReview);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionId = sessionStorage.getItem("id");
@@ -36,6 +37,7 @@ const NavbarSide = () => {
                 // sessionStorage.setItem("cart", []);
                 // setTest(!test);
                 dispatch(EmptyCart());
+                
                 // dispatch(signOut(currentUser));
                 // console.log(currentUser.login);
                 // console.log(currentUser.login);
