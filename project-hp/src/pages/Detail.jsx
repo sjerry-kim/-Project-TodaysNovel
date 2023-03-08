@@ -25,7 +25,7 @@ const Detail = () => {
         <img src={require(`../img/${products.image}`)} alt="no image" />
         <div className="Detail-product-detaildiv">
           <h1>{products.title}</h1>
-          <p>{products.price}</p>
+          <p>{products.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
         </div>
       </div>
       <MainReview reviews={reviews} productsReviews={productsReviews}/>

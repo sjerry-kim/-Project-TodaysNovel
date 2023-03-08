@@ -148,7 +148,7 @@ const Cart = () => {
                   <p>{item.title}</p>
                 </td>
                 <td>
-                  <p>{item.price}$</p>
+                  <p>{item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
                 </td>
                 <td>
                   <div className="Cart-itemdiv-modifynum">
@@ -172,7 +172,7 @@ const Cart = () => {
                   </div>
                 </td>
                 <td>
-                  <p>{item.price * item.itemCount}$</p>
+                  <p>{(item.price * item.itemCount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
                 </td>
                 <td>
                   <button
@@ -198,7 +198,7 @@ const Cart = () => {
             >
               Delete Selection
             </button>
-            <p>{total}</p>
+            <p>{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
             <button
               onClick={() => {
                 if(checkedList.length == 0){
