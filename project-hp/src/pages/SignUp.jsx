@@ -7,6 +7,9 @@ import { signUp } from "../modules/user";
 import PostModal from "../components/PostModal";
 
 const SignUp = () => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [id, setId] = useInput("");
   const [pw, setPw] = useInput("");
   const [name, setName] = useInput("");
@@ -15,11 +18,17 @@ const SignUp = () => {
   const [post, setPost] = useState("")
   const [restAdress, setRestAdress] = useState("")
   const [additionalAdress, setAdditionalAdress] = useInput("");
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [isActive, setIsActive] = useState(false);
   // Modal
   const [postModal, setPostModal] = useState(false);
+
+  // useEffect(()=>{
+  //   if(id && pw && name && tel && email && post && restAdress && additionalAdress){
+  //     setIsActive(true);
+  //   }else{
+  //     setIsActive(false);
+  //   }
+  // },[id, pw, name, tel, email, post, restAdress, additionalAdress]);
 
   const findUser = (newUser) => {
     const sameAccount = user.userList.find(
@@ -37,54 +46,8 @@ const SignUp = () => {
     <div className="SignUp-wp">
       <form
         action=""
-        onSubmit={(e)=>{e.preventDefault()}}
-      >
-        <label htmlFor="">ID</label>
-        <input type="text" onChange={setId} value={id} />
-        <label htmlFor="">PW</label>
-        <input type="text" onChange={setPw} value={pw} />
-        <label htmlFor="">NAME</label>
-        <input type="text" onChange={setName} value={name} />
-        <label htmlFor="">TEL</label>
-        <input type="tel" onChange={setTel} value={tel} />
-        <label htmlFor="">E-MAIL</label>
-        <input type="email" onChange={setEmail} value={email} />
-        {/* 우편번호 */}
-        <label htmlFor="">adress</label>
-        <input 
-          type="text" 
-          disabled 
-          placeholder="post number" 
-          value={post}/>
-        <button
-          onClick={() => {
-            setPostModal(true);
-          }}
-        >
-          Search Postnumber
-        </button>{" "}
-        <br />
-        <input
-          type="text"
-          disabled
-          placeholder="rest adress"
-          value={restAdress}
-        />{" "}
-        <br />
-        <input
-          type="text"
-          placeholder="additional adress"
-          onChange={setAdditionalAdress}
-          value={additionalAdress}
-        />
-        {/* <label htmlFor="">ADRESS</label>
-        <input
-        type="text"
-        onChange={setAdress}
-        value={adress}
-      /> */}
-        <button onClick={() => {
-          setPostModal(false);
+        onSubmit={(e)=>{
+          e.preventDefault()
           const newUser = {
             login: false,
             id: id,
@@ -101,8 +64,62 @@ const SignUp = () => {
           };
           findUser(newUser);
           sessionStorage.removeItem("signPost");
-          sessionStorage.removeItme("signAddress");
-        }}>sign up</button>
+          sessionStorage.removeItem("signAddress");
+        }}
+      >
+        <label htmlFor="">ID</label>
+        <input type="text" required onChange={setId} value={id} />
+        <label htmlFor="">PW</label>
+        <input type="password" required onChange={setPw} value={pw} />
+        <label htmlFor="">NAME</label>
+        <input type="text" required onChange={setName} value={name} />
+        <label htmlFor="">TEL</label>
+        <input type="tel" required onChange={setTel} value={tel} />
+        <label htmlFor="">E-MAIL</label>
+        <input type="email" required onChange={setEmail} value={email} />
+        {/* 우편번호 */}
+        <label htmlFor="">adress</label>
+        <input 
+          type="text" 
+          required
+          disabled 
+          placeholder="post number" 
+          value={post}/>
+        <button
+          onClick={() => {
+            setPostModal(true);
+          }}
+        >
+          Search Postnumber
+        </button>{" "}
+        <br />
+        <input
+          type="text"
+          required
+          disabled
+          placeholder="rest adress"
+          value={restAdress}
+        />{" "}
+        <br />
+        <input
+          type="text"
+          required
+          placeholder="additional adress"
+          onChange={setAdditionalAdress}
+          value={additionalAdress}
+        />
+        {/* <label htmlFor="">ADRESS</label>
+        <input
+        type="text"
+        onChange={setAdress}
+        value={adress}
+      /> */}
+        <button 
+          // disabled={isActive? false : true}
+          onClick={() => {
+            setPostModal(false);
+
+          }}>sign up</button>
       </form>
       {postModal ? (
         <PostModal 

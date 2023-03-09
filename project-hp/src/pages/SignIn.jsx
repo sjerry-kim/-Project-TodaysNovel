@@ -47,7 +47,7 @@ const SignIn = () => {
         <label htmlFor="">Id</label>
         <input type="text" onChange={(e)=>{setId(e.target.value)}}/>
         <label htmlFor="">Password</label>
-        <input type="text" onChange={(e)=>{setPw(e.target.value)}}/>
+        <input type="password" onChange={(e)=>{setPw(e.target.value)}}/>
         <input type="submit" value={"sign in"} />
       </form>
       <button onClick={()=>{

@@ -24,6 +24,7 @@ const Cart = () => {
   const user = useSelector((state) => state.user);
   const [total, setTotal] = useState(0);
   let totalPriceArray = [];
+  let totalPrice = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   const allChecked = cart.every((item) => item.isChecked);
   const checkedList = cart.filter((item)=> item.isChecked);
   const sessionId = sessionStorage.getItem("id");
@@ -34,6 +35,8 @@ const Cart = () => {
   // const [remainCart, setRemainCart] = useState(cart);
   // const [parseCartState, setParseCartState] = useState();
   let purchaseArray = [];
+  const date = new Date();
+  const orderDate = `${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,"0")}.${String(date.getDate()).padStart(2,"0")}`;
   
   useEffect(() => {
     cart.forEach((item) => {
@@ -85,7 +88,8 @@ const Cart = () => {
         let newPurchaseArray = purchaseArray.concat(
           {...p,
             myPageId: myPageId++,
-            isReviewed: false
+            isReviewed: false,
+            orderDate : orderDate
           }
           );
         purchaseArray = newPurchaseArray;
@@ -172,7 +176,10 @@ const Cart = () => {
                   </div>
                 </td>
                 <td>
-                  <p>{(item.price * item.itemCount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
+                  <p>
+                    {(item.price * item.itemCount)
+                    .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+                  </p>
                 </td>
                 <td>
                   <button
@@ -198,18 +205,28 @@ const Cart = () => {
             >
               Delete Selection
             </button>
-            <p>{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
+            <p>상품구매금액 
+              {totalPrice}원 
+              + 배송비 {total>60000? 0 : 2500}원 
+              : 총 합계{total>60000? totalPrice: 
+              (total+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+            </p>
             <button
               onClick={() => {
-                if(checkedList.length == 0){
-                  alert("주문할 상품을 선택하세요")
-                }else{
-                  if(window.confirm("주문하시겠습니까?")){
-                    buyCheckedProducts();
+                if(currentUser){
+                  if(checkedList.length == 0){
+                    alert("주문할 상품을 선택하세요")
                   }else{
-                    alert("주문이 취소되었습니다")
+                    if(window.confirm("주문하시겠습니까?")){
+                      buyCheckedProducts();
+                    }else{
+                      alert("주문이 취소되었습니다")
+                    }
                   }
+                }else{
+                  alert("로그인 후 이용하세요")
                 }
+
               }}
             >
               {" "}

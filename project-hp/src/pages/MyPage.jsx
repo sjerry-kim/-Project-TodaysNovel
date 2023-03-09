@@ -154,9 +154,11 @@ const MyPage = () => {
             return(
               <div key={i} className="MyPage-purchasedProducts-div">
               <p>{p.title}</p>
-              <p>{p.myPageId}</p>
+              {/* <p>{p.myPageId}</p> */}
+              <p>주문갯수: {p.itemCount}</p>
               <p>{p.isReviewed ? "후기 작성 완료" : "후기 작성 필요"}</p>
               <img src={require(`../img/${p.image}`)} alt="no image" />
+              <p>{p.orderDate}</p>
               <button
                 onClick={() => {
                   setReviewModal(true);
