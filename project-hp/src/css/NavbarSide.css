@@ -2,12 +2,47 @@
   display: flex;
   flex-direction: row;
   justify-content: end;
+  width: 40%;
+  padding: 5px 10px;
 }
 
 .NavbarSide-wp > a{
   margin: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
 }
 
-.NavbarSide-wp > button{
-  margin: 10px;
+.NavbarSide-wp > a> svg{
+  /* color: red; */
 }
+
+.NavbarSide-wp-div{
+  display: flex;
+  flex-direction: row;
+}
+
+.NavbarSide-wp-div > p{
+  margin: 10px 5px;
+}
+
+.NavbarSide-wp-div > button{
+  margin: 10px 5px;
+  background-color: transparent;
+  border: none;
+  height: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.NavbarSide-wp-div > a{
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.NavbarSide-wp-div > a> svg{
+  /* color: red; */
+}
+

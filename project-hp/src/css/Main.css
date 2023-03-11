@@ -1,14 +1,16 @@
 .Main-wp{
   margin: 0;
   padding: 0;
+  padding-top: 100px;
   background-color: lemonchiffon;
   width: 100vw;
-  height: fit-content;
+  height: 100%;
   /* height: calc(40vh - 100px); */
 }
 
 .Main-wp h1{
   margin: 0;
+  z-index: 998;
 }
 
 .Main-itembox{
