@@ -86,7 +86,7 @@
 }
 
 #NavbarLists-hamburger:checked ~ .NavbarLists-menu {
-  width: 20vw;
+  width: 30vw;
 }
 
 #NavbarLists-hamburger:checked ~ .NavbarLists-menuicon span {
@@ -119,5 +119,7 @@
   position: absolute;
   width: 100vw;
   height: 500vh;
-  background-color: pink;
+  background-color: transparent;
+  display: none;
+  border: 10px solid red;
 }
