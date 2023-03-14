@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import MainFace from "../components/MainFace";
 import RecentBox from "../components/RecentBox";
 
 import "../css/Main.css";
@@ -79,7 +80,7 @@ const Main = () => {
 
   return (
     <div className="Main-wp">
-      <h1>Main</h1>
+      <MainFace />
       <form
         action=""
         onSubmit={(e) => {

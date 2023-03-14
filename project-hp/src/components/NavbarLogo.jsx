@@ -1,14 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import '../css/NavbarLogo.css';
+import "../css/NavbarLogo.css";
 
 const NavbarLogo = () => {
   const navigate = useNavigate();
 
-  return (  
+  return (
     <div className="NavbarLogo-wp">
-      <h1 onClick={()=>{navigate('/')}} >Today's Novel</h1>
+      <img
+        src={require(`../img/logo03.png`)}
+        alt="no image"
+        onClick={() => {
+          navigate("/");
+        }}
+      />
     </div>
   );
-}
+};
 
 export default NavbarLogo;

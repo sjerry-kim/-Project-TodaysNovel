@@ -1,4 +1,9 @@
 .NavbarLogo-wp{
   margin: auto;
-  width: 30%;
+  width: 33%;
+}
+
+.NavbarLogo-wp img{
+  width: 260px;
+  margin-top: 10px;
 }

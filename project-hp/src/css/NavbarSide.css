@@ -1,20 +1,39 @@
+@font-face {
+  font-family: 'IBMPlexSansKR-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .NavbarSide-wp{
   display: flex;
   flex-direction: row;
   justify-content: end;
-  width: 40%;
+  width: 33%;
   padding: 5px 10px;
 }
 
 .NavbarSide-wp > a{
   margin: 10px;
   text-decoration: none;
-  color: black;
+  color: #3C4048;
   cursor: pointer;
+  font-family: 'IBMPlexSansKR-Regular';
+}
+
+.NavbarSide-wp > a:hover{
+  color: #567189;
 }
 
 .NavbarSide-wp > a> svg{
-  /* color: red; */
+  margin-top: 2px;
+  color: #3C4048;
+  font-size: 1.2em;
+}
+
+.NavbarSide-wp > a> svg:hover{
+  color: #567189;
+  
 }
 
 .NavbarSide-wp-div{
@@ -23,7 +42,9 @@
 }
 
 .NavbarSide-wp-div > p{
-  margin: 10px 5px;
+  margin: 13px 5px;
+  font-family: 'IBMPlexSansKR-Regular';
+  font-size: 0.9em;
 }
 
 .NavbarSide-wp-div > button{
@@ -33,16 +54,27 @@
   height: 20px;
   font-size: 16px;
   cursor: pointer;
+  font-family: 'IBMPlexSansKR-Regular';
+}
+
+.NavbarSide-wp-div > button:hover{
+  color: #567189;
 }
 
 .NavbarSide-wp-div > a{
   margin: 10px;
   text-decoration: none;
-  color: black;
+  color: #3C4048;
   cursor: pointer;
+  font-family: 'IBMPlexSansKR-Regular';
 }
 
 .NavbarSide-wp-div > a> svg{
-  /* color: red; */
+  margin-top: 2px;
+  color: #3C4048;
+  font-size: 1.2em;
 }
 
+.NavbarSide-wp-div > a> svg:hover{
+  color: #567189;
+}

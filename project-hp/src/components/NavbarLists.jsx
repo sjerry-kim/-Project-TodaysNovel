@@ -6,60 +6,53 @@ import '../css/NavbarLists.css';
 
 const NavbarLists = () => {
   const [bodyOverflow, setBodyOverflow] = useState(false);
+  // 🧡 ↓ overflow : hidden 관련 state → 추후 수정 예정
+  // const [navbar, setNavbar] = useState(false);
   const navRef = useRef(null);
-  
-  useEffect(()=>{
-    if(bodyOverflow){
-      document.querySelector("body").style.overflow = "hidden"
-    }else{
-      document.querySelector("body").style.overflow = "auto"
-    }
-  },[bodyOverflow])
+
+  // 🧡 ↓ overflow : hidden 관련 useEffect
+  // useEffect(()=>{
+  //   if(bodyOverflow){
+  //     document.querySelector("body").style.overflow = "hidden"
+  //   }else{
+  //     document.querySelector("body").style.overflow = "auto"
+  //   }
+  // },[bodyOverflow])
 
   useEffect(()=>{
-    const handler = (event) => {
-      if(navRef.current && !navRef.current.contains(event.target)){
-        setBodyOverflow(false)
+    const handler = (e) => {
+      if(navRef.current && !navRef.current.contains(e.target)){
+          setBodyOverflow(!bodyOverflow)
         document.querySelector("#NavbarLists-hamburger").checked = false
       }
     };
     document.addEventListener("mousedown", handler);
-
     return () => {
       document.removeEventListener("mousedown", handler);
     };
   })
 
-
   return (  
     <div className="NavbarLists-wp">
       <input type="checkbox" id="NavbarLists-hamburger" />
-      <label class="NavbarLists-menuicon" for="NavbarLists-hamburger">
+      <label 
+        class="NavbarLists-menuicon" 
+        for="NavbarLists-hamburger"
+        >
         <span onClick={()=>{
-          setBodyOverflow(!bodyOverflow);
+          // 🧡 ↓ overflow : hidden 관련 state set함수
+          // setBodyOverflow(!bodyOverflow);
           console.log(bodyOverflow);
         }}
         ref={navRef}
         ></span>
       </label>
       <div className="NavbarLists-menu" >
+        <div className="NavbarLists-menu-div">
         <NavLink to="/main">Main</NavLink>
         <NavLink to="/about">About this site</NavLink>
+        </div>
       </div>
-      {/* <div className="NavbarLists-transparents"
-        onClick={()=>{
-          const handler = (event) => {
-            if(navRef.current && !navRef.current.contains(event.target)){
-              setBodyOverflow(false)
-              document.querySelector("#NavbarLists-hamburger").checked = false
-            }
-          };
-          document.addEventListener("mousedown", handler);
-      
-          return () => {
-            document.removeEventListener("mousedown", handler);
-          };
-        }}></div> */}
     </div>
   );
 }
